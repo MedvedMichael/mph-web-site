@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import '../styles/bootstrap.min.css'
+import '../styles/bootstrap.css'
 
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
