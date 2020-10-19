@@ -16,16 +16,16 @@ export default function Footer() {
                     <h3 className="light-text">Contact me</h3>
                         <div className={styles["contact-me-group"]}>
                             <a href="https://t.me/medved2001" target="_blank">
-                                <i className={`fab fa-telegram-plane ${styles["contact-icon"]}`} />
+                                <i aria-hidden={true} className={`fab fa-telegram-plane ${styles["contact-icon"]}`} />
                             </a>
                             <a href="https://www.facebook.com/profile.php?id=100006384134639" target="_blank">
-                                <i className={`fab fa-facebook ${styles["contact-icon"]}`} />
+                                <i aria-hidden={true} className={`fab fa-facebook ${styles["contact-icon"]}`} />
                             </a>
                             <a href="https://www.instagram.com/___mph___/" target="_blank">
-                                <i className={`fab fa-instagram ${styles["contact-icon"]}`} />
+                                <i aria-hidden={true} className={`fab fa-instagram ${styles["contact-icon"]}`} />
                             </a>
                             <a href="mailto:misha.medvedev2001@gmail.com" target="_blank">
-                                <i className={`fas fa-envelope-open-text ${styles["contact-icon"]}`} />
+                                <i aria-hidden={true} className={`fas fa-envelope-open-text ${styles["contact-icon"]}`} />
                             </a>
 
                             
