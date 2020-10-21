@@ -28,9 +28,13 @@ interface PostViewProps {
 const PostView = ({ post }: PostViewProps) => {
     const { text, title, id } = post
     const history = useRouter()
+
+    const onPostClick = () => {
+        history.push(`/post/${id}`)
+    }
     return (
 
-        <div className="list-group-item card text-white bg-info mb-3 post-view">
+        <div className="card border-info mb-3 post-view" onClick={onPostClick}>
             <div className="card-header">
                 {title}
             </div>

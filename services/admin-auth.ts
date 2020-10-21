@@ -1,0 +1,1 @@
+export const checkAdminCredentials = (email: string, password: string) => email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD
