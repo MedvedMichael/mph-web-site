@@ -1,6 +1,6 @@
 import styles from './about-me.module.css'
 
-export default function AboutMe () {
+const AboutMe = () => {
     // console.log(avatar);
     return (
         <section className={`${styles["about-me"]}`}>
@@ -17,4 +17,6 @@ export default function AboutMe () {
         </section>
     );
 };
+
+export default AboutMe
 
