@@ -1,9 +1,0 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    min-height: 65rem;
-}
-
-.main-container {
-    flex-grow: 1;
-}

@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import styles from './main-layout.module.css'
 
 
 
@@ -26,14 +26,14 @@ const MainLayout = ({ children }) => {
             {/* <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="./api/firebase"></script> */}
         </Head>
-        <div className={styles["main"]}>
+        <Main>
             <Header />
 
-            <main style={{ flexGrow: 1 }} className={`${styles["main-container"]}`}>
+            <MainContainer >
                 {children}
-            </main>
+            </MainContainer>
             <Footer />
-        </div>
+        </Main>
     </>)
 
     if (!mounted)
@@ -45,3 +45,13 @@ const MainLayout = ({ children }) => {
 const getStyle = async (theme: string) => fetch(process.env.API_URL + '/api/bootstrap?theme=' + theme).then(res => res.text())
 
 export default MainLayout
+
+const Main = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 65rem;
+`
+
+const MainContainer = styled.main`
+    flex-grow: 1;
+`

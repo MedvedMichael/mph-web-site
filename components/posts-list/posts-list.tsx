@@ -1,24 +1,28 @@
-import styles from './posts-list.module.css'
 import Post from '../../interfaces/Post'
 import { useRouter } from 'next/router'
+import styled from 'styled-components'
 
 interface PostsListProps {
     posts: Post[]
 }
 
 const PostsList = ({ posts }: PostsListProps) => {
-
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} />)
-
     return (
-        <div className={styles['posts-list']}>
-            
-                {postsViews}
-            
-        </div>
+        <PostsListView>
+            {postsViews}
+        </PostsListView>
     )
 
 }
+
+const PostsListView = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    padding: 2%;
+    margin-top: 6rem;
+`
 
 interface PostViewProps {
     post: Post,
