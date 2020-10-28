@@ -1,37 +1,18 @@
-
-import styles from './header.module.css'
-// import {useRouter} from 'next/router'
-import React, { FunctionComponent, useEffect } from 'react'
+import { FunctionComponent, useContext, useEffect, useState } from 'react'
 // import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
-import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Navbar from '../navbar/navbar'
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Header = () => {
-    // const currentTheme = window.localStorage.getItem('theme')
-    // console.log(props)
-    // const {currentTheme} = props
-    // const {style, setStyle} = currentTheme
-    // const [theme, setTheme] = useState(true)
-    const [theme, setTheme] = useState('light')
+    // const [theme, setTheme] = useState('light')
     const [show, setShow] = useState(false)
 
     const handleNavbar = () => setShow(!show)
     const history = useRouter()
+    // console.log(theme)
+    
 
-    useEffect(() => {
-        const res = localStorage.getItem('theme')
-        setTheme(res ? res : 'light')
-    }, [])
-
-    const changeTheme = () => {
-        localStorage.setItem('theme', (theme === 'dark' ? 'light' : 'dark'))
-
-        console.log(window.location.pathname)
-        // history.push(history.asPath)
-        history.reload()
-    }
+    
     return (
         <div>
             {/* <Navbar

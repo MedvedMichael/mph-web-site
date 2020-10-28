@@ -1,9 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import NavbarProps from '../../interfaces/NavbarProps';
+import Link from 'next/link';
 
-const CollapseMenu = ({navbarState, handleNavbar}: NavbarProps) => {
+
+
+
+const CollapseMenu = ({ navbarState, handleNavbar}: NavbarProps) => {
   const { open } = useSpring({ open: navbarState ? 0 : 1 });
 
   if (navbarState === true) {
@@ -13,13 +16,25 @@ const CollapseMenu = ({navbarState, handleNavbar}: NavbarProps) => {
           range: [0, 0.2, 0.3, 1],
           output: [0, -20, 0, -200],
         }).interpolate(openValue => `translate3d(0, ${openValue}px, 0`),
+        // background: theme === 'light' ? '#fff' : '#2d3436'
       }}
       >
-        <NavLinks>
-          <li><a href="/" onClick={handleNavbar}>link n1</a></li>
-          <li><a href="/" onClick={handleNavbar}>link n2</a></li>
-          <li><a href="/" onClick={handleNavbar}>link n3</a></li>
-          <li><a href="/" onClick={handleNavbar}>link n4</a></li>
+        {/* {style={{color: theme === 'light' ? '#2d3436' :'#dfe6e9'}} */}
+        <NavLinks >
+          <li className="nav-item nav-link">
+            <Link href="/">Home</Link>
+          </li>
+          <li className="nav-item nav-link">
+            <Link href="/blog">Blog</Link>
+          </li>
+          <li className="nav-item nav-link">
+            <Link href="#">Portfolio</Link>
+          </li>
+          <li className="nav-item nav-link">
+            <a>
+              {/* <i aria-hidden={true} className={`${theme === 'light' ? ' far fa-sun' : ' fas fa-cloud-moon'}`} /> */}
+            </a>
+          </li>
         </NavLinks>
       </CollapseWrapper>
     );
@@ -30,7 +45,7 @@ const CollapseMenu = ({navbarState, handleNavbar}: NavbarProps) => {
 export default CollapseMenu;
 
 const CollapseWrapper = styled(animated.div)`
-  background: #2d3436;
+  background: ${props => props.theme.bg.nav};
   position: fixed;
   top: 4.5rem;
   left: 0;
@@ -39,22 +54,25 @@ const CollapseWrapper = styled(animated.div)`
 
 const NavLinks = styled.ul`
   list-style-type: none;
-  padding: 2rem 1rem 2rem 2rem;
+  padding: 2rem 1rem 1rem 1rem;
+  margin-top: 1rem;
+  
   
   & li {
     transition: all 300ms linear 0s;
   }
 
-  & Link {
+  & a {
     font-size: 1.4rem;
     line-height: 2;
-    color: #dfe6e9;
+    
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
+    color: ${props => props.theme.text.primary};
 
     &:hover {
-      color: #fdcb6e;
+      color: #f39c1a;
       border-bottom: 1px solid #fdcb6e;
     }
   }

@@ -6,14 +6,14 @@ import Head from 'next/head'
 
 
 export default function Home() {
-  
+
   return (
     <>
       <MainLayout>
-        <AboutMe  />
-       
+        <AboutMe />
+
         {/* <PictureSlider dataURLs={['https://focus.ua/storage/pub/files/google-assistant-superpower-100824533-large.jpg']}/> */}
       </MainLayout>
-      </>
+    </>
   )
 }

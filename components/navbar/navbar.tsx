@@ -5,10 +5,16 @@ import Link from 'next/link'
 import BurgerMenu from "./burger-menu";
 import CollapseMenu from "./collapse-menu";
 import NavbarProps from "../../interfaces/NavbarProps";
+import useDarkMode from "use-dark-mode";
+import { useContext } from "react";
+import { DarkThemeContext } from "../Providers";
 
 
 
-const Navbar = ({navbarState, handleNavbar}: NavbarProps) => {
+const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
+
+  const darkMode = useContext(DarkThemeContext)
+  console.log(darkMode)
   const barAnimation = useSpring({
     from: { transform: 'translate3d(0, -10rem, 0)' },
     transform: 'translate3d(0, 0, 0)',
@@ -21,14 +27,17 @@ const Navbar = ({navbarState, handleNavbar}: NavbarProps) => {
     config: config.wobbly,
   });
 
+  console.log(darkMode)
+
   return (
     <>
-      <NavBar className='navbar navbar-expand-lg navbar-dark bg-primary' style={barAnimation}>
+    {/* 'navbar navbar-expand-lg navbar-light bg-light' */}
+      <NavBar style={barAnimation}>
         <FlexContainer>
           <NavbarTitle>
             <Link href='/'>MPH's web site</Link>
           </NavbarTitle>
-          <NavLinks className="navbar-nav mr-auto d-flex" style={linkAnimation}>
+          <NavLinks className="navbar-nav d-flex" style={linkAnimation}>
             <li className="nav-item nav-link">
               <Link href="/">Home</Link>
             </li>
@@ -38,6 +47,12 @@ const Navbar = ({navbarState, handleNavbar}: NavbarProps) => {
             <li className="nav-item nav-link">
               <Link href="#">Portfolio</Link>
             </li>
+
+            <ChangeThemeButton className="nav-item nav-link">
+              <a onClick={darkMode.toggle}>
+                <i aria-hidden={true} className={`${!darkMode.value ? ' far fa-sun' : ' fas fa-cloud-moon'}`} />
+              </a>
+            </ChangeThemeButton>
             {/* <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
               <div className="dropdown-menu">
@@ -74,10 +89,15 @@ const NavBar = styled(animated.nav)`
   left: 0;
   z-index: 1;
   font-size: 1.4rem;
+  background-color: ${props => {
+    console.log(props)
+    return props.theme.bg.nav}};
+  color: ${props => props.theme.text.primary}
+  
 `;
 
 const NavbarTitle = styled.h3`
-    color: #dfe6e9;
+    color: ${props => props.theme.text.primary};
     text-transform: uppercase;
     font-weight: 600;
     border-bottom: 1px solid transparent;
@@ -86,6 +106,7 @@ const NavbarTitle = styled.h3`
     /* margin-right: auto; */
     min-width: 16rem;
     text-decoration: none;
+    transition: all 300ms linear 0s;
     & :hover {
       text-decoration:none;
       color: #fff;
@@ -98,22 +119,24 @@ const FlexContainer = styled.div`
   display: flex;
   flex-grow:1;
   margin: auto;
-  /* padding: 0 1rem; */
+  padding: 0 1rem;
   justify-content: space-between;
   height: 5rem;
 `;
 
 const NavLinks = styled(animated.ul)`
   flex-direction: row;
+  flex-grow: 1;
   justify-self: end;
   list-style-type: none;
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 1rem;
+  margin-right: 1rem;
 
   
   & a {
-    color: #dfe6e9;
+    ${props => props.theme.text.primary};
     text-transform: uppercase;
     font-weight: 600;
     border-bottom: 1px solid transparent;
@@ -123,7 +146,7 @@ const NavLinks = styled(animated.ul)`
     cursor: pointer;
 
     &:hover {
-      color: #fdcb6e;
+      color: #ffc71f;
       border-bottom: 1px solid #fdcb6e;
     }
 
@@ -133,9 +156,15 @@ const NavLinks = styled(animated.ul)`
   }
 `;
 
+const ChangeThemeButton = styled.li`
+    display: block;
+    margin-left: auto;
+`
+
 const BurgerWrapper = styled.div`
   margin: auto 0;
   margin-left: auto;
+  
   
 
   @media (min-width: 769px) {

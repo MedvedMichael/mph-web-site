@@ -3,7 +3,7 @@
 import styled from "styled-components";
 const FooterView = () => {
     return (
-        <Footer className="bg-primary text-center">
+        <Footer className="text-center">
             <FooterContainer className="container">
                 <div className="row">
                     {/* <div className={styles['footer-element']}> */}
@@ -48,6 +48,7 @@ export default FooterView
 const Footer = styled.footer`
     display: flex;
     flex-direction: row;
+    background: ${props => props.theme.bg.nav}
 `
 
 const FooterContainer = styled.div`

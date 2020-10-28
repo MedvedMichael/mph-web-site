@@ -22,6 +22,7 @@ const PostsListView = styled.div`
     flex:1;
     padding: 2%;
     margin-top: 6rem;
+    
 `
 
 interface PostViewProps {
