@@ -1,10 +1,10 @@
 const light = {
     bg: {
-        primary: '#c8d8e3',
-        secondary: '#ffffff',
+        primary: '#93c5ed',
+        secondary: '#5785ba',
         inset: '#e2e4e8',
         input: 'rgba(65,67,78,0.12)',
-        nav: '#5785ba',
+        nav: '#437dbf',
         aboutMe: 'linear-gradient(to right, #5785ba, #c8d8e3)'
     },
     text: {
@@ -25,7 +25,7 @@ const light = {
 const dark = {
     bg: {
         primary: '#162333',
-        secondary: '#111111',
+        secondary: '#162333',
         inset: '#111111',
         input: 'rgba(191,193,201,0.12)',
         nav: '#18304d',

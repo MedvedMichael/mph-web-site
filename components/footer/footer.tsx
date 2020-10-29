@@ -3,17 +3,17 @@
 import styled from "styled-components";
 const FooterView = () => {
     return (
-        <Footer className="text-center">
-            <FooterContainer className="container">
-                <div className="row">
+        <Footer>
+            <FooterContainer>
+                <Row>
                     {/* <div className={styles['footer-element']}> */}
-                    <div className="col-lg-4 mb-5 mb-lg-0">
-                        <h3 className="light-text mb-3 text-uppercase">Location</h3>
-                        <h5 className="light-text">18G Tupoleva Street</h5>
-                        <h5 className="light-text">Kiev, Ukraine</h5>
-                    </div>
-                    <div className="col-lg-4 mb-5 mb-lg-0">
-                        <h3 className="light-text">Contact me</h3>
+                    <FooterGroup>
+                        <LocationTitle>Location</LocationTitle>
+                        <h5>18G Tupoleva Street</h5>
+                        <h5>Kiev, Ukraine</h5>
+                    </FooterGroup>
+                    <FooterGroup>
+                        <h3>Contact me</h3>
                         <ContactMeGroup>
                             <a href="https://t.me/medved2001" target="_blank">
                                 <ContactIcon aria-hidden={true} className="fab fa-telegram-plane" />
@@ -30,14 +30,14 @@ const FooterView = () => {
 
 
                         </ContactMeGroup>
-                    </div>
-                    <div className="col-lg-4 mb-5 mb-lg-0">
-                        <h3 className="light-text">Source</h3>
+                    </FooterGroup>
+                    <FooterGroup>
+                        <h3>Source</h3>
                         <a href="https://github.com/MedvedMichael/mph-web-site" target="_blank">
                             <ContactIcon aria-hidden={true} className={`fab fa-github`} />
                         </a>
-                    </div>
-                </div>
+                    </FooterGroup>
+                </Row>
             </FooterContainer>
         </Footer>
     )
@@ -51,11 +51,18 @@ const Footer = styled.footer`
     background: ${props => props.theme.bg.nav};
     transition: ${props => props.theme.transition.bg};
     color: ${props => props.theme.text.primary};
+    text-align: center !important;
 `
 
 const FooterContainer = styled.div`
     margin: 0 auto;
     padding: 5rem;
+    width: 100%;
+`
+
+const Row = styled.div`
+    display: flex;  
+    flex-wrap: wrap;
 `
 
 const ContactIcon = styled.i`
@@ -68,4 +75,25 @@ const ContactMeGroup = styled.div`
     display: block;
     margin: 0 auto;
 
+`
+
+const FooterGroup = styled.div`
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 3rem !important;
+    color: ${props => props.theme.text.primary};
+    @media (min-width: 992px) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.3333333333%;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+    }
+    /* max-width: 33.3333333333%; */
+`
+
+const LocationTitle = styled.h3`
+    margin-bottom: 1rem !important; 
+    text-transform: uppercase !important;
 `

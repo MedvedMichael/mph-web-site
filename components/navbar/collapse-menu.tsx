@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import NavbarProps from '../../interfaces/NavbarProps';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { DarkThemeContext } from '../Providers';
 
 
 
 
-const CollapseMenu = ({ navbarState, handleNavbar}: NavbarProps) => {
+const CollapseMenu = ({ navbarState, handleNavbar }: NavbarProps) => {
   const { open } = useSpring({ open: navbarState ? 0 : 1 });
+
+  const darkMode = useContext(DarkThemeContext)
 
   if (navbarState === true) {
     return (
@@ -31,8 +35,8 @@ const CollapseMenu = ({ navbarState, handleNavbar}: NavbarProps) => {
             <Link href="#">Portfolio</Link>
           </li>
           <li className="nav-item nav-link">
-            <a>
-              {/* <i aria-hidden={true} className={`${theme === 'light' ? ' far fa-sun' : ' fas fa-cloud-moon'}`} /> */}
+            <a onClick={darkMode.toggle}>
+              <i aria-hidden={true} className={`${!darkMode.value ? ' far fa-sun' : ' fas fa-cloud-moon'}`} />
             </a>
           </li>
         </NavLinks>
@@ -46,7 +50,9 @@ export default CollapseMenu;
 
 const CollapseWrapper = styled(animated.div)`
   background: ${props => props.theme.bg.nav};
+  transition: ${props => props.theme.transition.bg};
   position: fixed;
+  z-index:4;
   top: 4.5rem;
   left: 0;
   right: 0;
@@ -56,10 +62,13 @@ const NavLinks = styled.ul`
   list-style-type: none;
   padding: 2rem 1rem 1rem 1rem;
   margin-top: 1rem;
-  
-  
+  color: ${props => props.theme.text.primary};
+
   & li {
-    transition: all 300ms linear 0s;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    padding: 0.5rem 2rem;
+    list-style: none;
   }
 
   & a {
@@ -69,7 +78,7 @@ const NavLinks = styled.ul`
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-    color: ${props => props.theme.text.primary};
+    
 
     &:hover {
       color: #f39c1a;

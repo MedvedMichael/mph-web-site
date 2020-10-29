@@ -9,14 +9,10 @@ const MainLayout = ({ children }) => {
 
     const [style, setStyle] = useState('')
     const [mounted, setMounted] = useState(false)
-    const [theme, setTheme] = useState('light')
+    // const [theme, setTheme] = useState('light')
 
     useEffect(() => {
-        // const theme = localStorage.getItem('theme')
-        const res = localStorage.getItem('theme')
-        const newTheme = res ? res : 'light'
-        setTheme(newTheme)
-        getStyle(newTheme).then(setStyle).then(() => setMounted(true))
+        getStyle('light').then(setStyle).then(() => setMounted(true))
     }, [])
 
 
@@ -25,14 +21,12 @@ const MainLayout = ({ children }) => {
         <>
             <Head>
                 <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script>
-                <style>{style}</style>
+                {/* <style>{style}</style> */}
                 {/* <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="./api/firebase"></script> */}
             </Head>
-
             <Main>
                 <Header />
-
                 <MainContainer >
                     {children}
                 </MainContainer>

@@ -34,7 +34,7 @@ const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
           <NavbarTitle>
             <Link href='/'>MPH's web site</Link>
           </NavbarTitle>
-          <NavLinks className="navbar-nav d-flex" style={linkAnimation}>
+          <NavLinks style={linkAnimation}>
             <li className="nav-item nav-link">
               <Link href="/">Home</Link>
             </li>
@@ -80,11 +80,12 @@ const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
 export default Navbar
 
 const NavBar = styled(animated.nav)`
-  /* position: fixed; */
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  /* position: relative; */
+  z-index: 5;
   font-size: 1.4rem;
   background-color: ${props => props.theme.bg.nav};
   transition: ${props => props.theme.transition.bg};
@@ -94,11 +95,14 @@ const NavBar = styled(animated.nav)`
 
 const NavbarTitle = styled.h3`
     color: ${props => props.theme.text.primary};
+    font-size: 2rem;
+    line-height: 1.2;
     text-transform: uppercase;
     font-weight: 600;
     border-bottom: 1px solid transparent;
     display: block;
     margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
     /* margin-right: auto; */
     min-width: 16rem;
     text-decoration: none;
@@ -115,21 +119,30 @@ const FlexContainer = styled.div`
   display: flex;
   flex-grow:1;
   margin: auto;
-  padding: 0 1rem;
+  padding-left: 1.5rem;
   justify-content: space-between;
   height: 5rem;
 `;
 
 const NavLinks = styled(animated.ul)`
-  flex-direction: row;
-  flex-grow: 1;
-  justify-self: end;
-  list-style-type: none;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 1rem;
-  margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-self: end;
+    list-style-type: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    padding-left: 0;
+    list-style: none;
 
+  & li {
+    padding-right: 0;
+    padding-left: 0;
+  }
   
   & a {
     ${props => props.theme.text.primary};
@@ -146,7 +159,7 @@ const NavLinks = styled(animated.ul)`
       border-bottom: 1px solid #fdcb6e;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
       display: none;
     }
   }
@@ -160,10 +173,11 @@ const ChangeThemeButton = styled.li`
 const BurgerWrapper = styled.div`
   margin: auto 0;
   margin-left: auto;
+  margin-right: 1rem;
   
   
 
-  @media (min-width: 769px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;

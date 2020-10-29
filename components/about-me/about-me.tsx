@@ -1,19 +1,18 @@
-import { relative } from 'path';
 import styled, { StyledComponent } from 'styled-components';
 
 const AboutMe = () => {
     // console.log(avatar);
     return (
-        <div style={{position: 'relative'}}>
+        <div style={{position: 'relative', marginTop:'5rem'}}>
             <AboutMeSection>
                 <AboutMeBlock>
                     <Avatar src={`${process.env.API_URL}/api/pictures/avatar.jpg`} />
                     <TitleBlock>
-                        <AboutMeTitle className="light-text">Michael Medvediev</AboutMeTitle>
-                        <Divider className="divider-light">
-                            <DividerLine></DividerLine>
+                        <AboutMeTitle>Michael Medvediev</AboutMeTitle>
+                        <Divider>
+                            <DividerLine/>
                             <ReactIcon src={`${process.env.API_URL}/api/pictures/react.png`} />
-                            <DividerLine ></DividerLine>
+                            <DividerLine/>
                         </Divider>
                         <Title>Software Engineer - Web Developer - Musician</Title>
                     </TitleBlock>
@@ -35,7 +34,6 @@ const AboutMeSection = styled.section`
         left: 0;
         width: 100%;
         height: 100%;
-        border-radius: 0.3em;
         background: linear-gradient(to right, #162333, #3160d6);
         transition: opacity 0.5s ease-out;
         /* z-index: 1; */
@@ -50,6 +48,10 @@ const AboutMeBlock = styled.div`
     padding: 2rem;
     position: relative;
     z-index:3;
+
+    @media (max-width: 630px){
+        flex-direction: column;
+    }
 `
 
 const TitleBlock = styled.div`
@@ -70,10 +72,10 @@ const Avatar = styled.img`
 const AboutMeTitle = styled.h1`
     display: block;
     margin: 0 auto;
-    padding-bottom: 2rem;
     font-weight: bolder;
     font-size: 3.5rem;
     text-align: center;
+    color: ${props => props.theme.text.primary}
 `
 
 const Divider = styled.div`
