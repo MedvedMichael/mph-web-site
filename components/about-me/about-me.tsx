@@ -1,34 +1,63 @@
+import { relative } from 'path';
 import styled, { StyledComponent } from 'styled-components';
 
 const AboutMe = () => {
     // console.log(avatar);
     return (
-        <AboutMeSection>
-            <AboutMeBlock className="container">
-                <Avatar src={`${process.env.API_URL}/api/pictures/avatar.jpg`} />
-                <AboutMeTitle className="light-text">Hi, my name is Michael Medvediev :)</AboutMeTitle>
-                <Divider className="divider-light">
-                    <DividerLine></DividerLine>
-                    <ReactIcon src={`${process.env.API_URL}/api/pictures/react.png`} />
-                    <DividerLine ></DividerLine>
-                </Divider>
-                <Title>Software Engineer - Web Developer - Musician</Title>
-            </AboutMeBlock>
-        </AboutMeSection>
+        <div style={{position: 'relative'}}>
+            <AboutMeSection>
+                <AboutMeBlock>
+                    <Avatar src={`${process.env.API_URL}/api/pictures/avatar.jpg`} />
+                    <TitleBlock>
+                        <AboutMeTitle className="light-text">Michael Medvediev</AboutMeTitle>
+                        <Divider className="divider-light">
+                            <DividerLine></DividerLine>
+                            <ReactIcon src={`${process.env.API_URL}/api/pictures/react.png`} />
+                            <DividerLine ></DividerLine>
+                        </Divider>
+                        <Title>Software Engineer - Web Developer - Musician</Title>
+                    </TitleBlock>
+                </AboutMeBlock>
+            </AboutMeSection>
+        </div>
     );
 };
 
 export default AboutMe
 
 const AboutMeSection = styled.section`
-    background-color: #1abc9c;
+    background: linear-gradient(to right, #5785ba, #c8d8e3);
     padding: 2rem 0;
+    &:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.3em;
+        background: linear-gradient(to right, #162333, #3160d6);
+        transition: opacity 0.5s ease-out;
+        /* z-index: 1; */
+        opacity: ${props => props.theme.dark ? 1 : 0};
+        /* opacity: 1 */
+    }
+
 `
 const AboutMeBlock = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     padding: 2rem;
-    margin-top: 3.5rem;
+    position: relative;
+    z-index:3;
+`
+
+const TitleBlock = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    flex-grow: 1;
 `
 
 const Avatar = styled.img`
@@ -36,6 +65,7 @@ const Avatar = styled.img`
     margin-top: 2rem;
     padding-bottom: 2rem;
     width: 15rem;
+    flex-grow: 1;
 `
 const AboutMeTitle = styled.h1`
     display: block;
@@ -109,5 +139,6 @@ const ReactIcon = styled.img`
 const Title = styled.h4`
     color: #fff;
     text-align: center;
+    font-size: 2em;
 `
 

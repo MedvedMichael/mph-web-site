@@ -54,7 +54,8 @@ const Main = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 65rem;
-    background: ${props => props.theme.bg.primary}
+    background: ${props => props.theme.bg.primary};
+    transition: ${props => props.theme.transition.bg};
 `
 
 const MainContainer = styled.main`

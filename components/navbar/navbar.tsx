@@ -14,7 +14,6 @@ import { DarkThemeContext } from "../Providers";
 const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
 
   const darkMode = useContext(DarkThemeContext)
-  console.log(darkMode)
   const barAnimation = useSpring({
     from: { transform: 'translate3d(0, -10rem, 0)' },
     transform: 'translate3d(0, 0, 0)',
@@ -26,8 +25,6 @@ const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
     delay: 800,
     config: config.wobbly,
   });
-
-  console.log(darkMode)
 
   return (
     <>
@@ -83,15 +80,14 @@ const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
 export default Navbar
 
 const NavBar = styled(animated.nav)`
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1;
   font-size: 1.4rem;
-  background-color: ${props => {
-    console.log(props)
-    return props.theme.bg.nav}};
+  background-color: ${props => props.theme.bg.nav};
+  transition: ${props => props.theme.transition.bg};
   color: ${props => props.theme.text.primary}
   
 `;
@@ -106,7 +102,7 @@ const NavbarTitle = styled.h3`
     /* margin-right: auto; */
     min-width: 16rem;
     text-decoration: none;
-    transition: all 300ms linear 0s;
+    transition: ${props => props.theme.transition.primary};
     & :hover {
       text-decoration:none;
       color: #fff;
@@ -141,7 +137,7 @@ const NavLinks = styled(animated.ul)`
     font-weight: 600;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
-    transition: all 300ms linear 0s;
+    transition: ${props => props.theme.transition.primary};
     text-decoration: none;
     cursor: pointer;
 

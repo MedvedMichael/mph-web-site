@@ -48,7 +48,9 @@ export default FooterView
 const Footer = styled.footer`
     display: flex;
     flex-direction: row;
-    background: ${props => props.theme.bg.nav}
+    background: ${props => props.theme.bg.nav};
+    transition: ${props => props.theme.transition.bg};
+    color: ${props => props.theme.text.primary};
 `
 
 const FooterContainer = styled.div`

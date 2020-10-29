@@ -7,8 +7,6 @@ const DarkThemeContext = createContext(null)
 
 const Providers = ({ children }) => {
     const darkMode = useDarkMode(false, { storageKey: null, onChange: null })
-    console.log('2')
-    // console.log(value)
     const theme = darkMode.value ? darkTheme : lightTheme
 
     const [mounted, setMounted] = useState(false)

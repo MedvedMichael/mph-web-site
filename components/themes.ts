@@ -4,7 +4,8 @@ const light = {
         secondary: '#ffffff',
         inset: '#e2e4e8',
         input: 'rgba(65,67,78,0.12)',
-        nav: '#5785ba'
+        nav: '#5785ba',
+        aboutMe: 'linear-gradient(to right, #5785ba, #c8d8e3)'
     },
     text: {
         primary: '#fbfbfc',
@@ -16,7 +17,8 @@ const light = {
     },
     border: {
         nav: '1px solid #282828'
-    }
+    },
+    dark: false
     // ...
 }
 
@@ -26,7 +28,8 @@ const dark = {
         secondary: '#111111',
         inset: '#111111',
         input: 'rgba(191,193,201,0.12)',
-        nav: '#18304d'
+        nav: '#18304d',
+        aboutMe: 'linear-gradient(to right, #162333, #3160d6)'
     },
     text: {
         primary: '#fbfbfc',
@@ -38,7 +41,8 @@ const dark = {
     },
     border: {
         nav: '1px solid #282828'
-    }
+    },
+    dark: true
     // ...
 }
 
@@ -64,6 +68,10 @@ const defaultTheme = {
         heading: 1.3,
         code: 1.6,
     },
+    transition: {
+        primary: 'all 300ms linear 0s',
+        bg: 'background 300ms linear 0s'
+    }
     // ...
 };
 
