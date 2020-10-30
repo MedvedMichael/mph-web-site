@@ -5,7 +5,6 @@ import Link from 'next/link'
 import BurgerMenu from "./burger-menu";
 import CollapseMenu from "./collapse-menu";
 import NavbarProps from "../../interfaces/NavbarProps";
-import useDarkMode from "use-dark-mode";
 import { useContext } from "react";
 import { DarkThemeContext } from "../Providers";
 

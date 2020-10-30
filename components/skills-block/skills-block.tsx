@@ -26,7 +26,7 @@ const SkillsBlock = () => {
                 <TechCard path='https://www.drupal.org/files/issues/2019-12-27/heroku_logo.png' title='Heroku Deployment' />
                 <TechCard path='https://lh3.googleusercontent.com/proxy/9yzPCcUpyJFRot51UDOlFbbikqM5et5VoX0d7ZdBiujBRF9_DC8ZvzM1aSnCgYsw5khKi28cmlom-qVzX0irDA35RAT-u0TFvyib_abKeNYmaM4hCwL9XH1EuUzW7UvdQq4D' title='Telegram Bot API' />
                 <TechCard path='https://ps.w.org/custom-wp-rest-api/assets/icon-128x128.png?rev=1975404' title='REST API' />
-                <TechCard path='https://miro.medium.com/max/320/0*_rAD9NgK7l6KSlNc.png' title='Bootstrap' />
+                <TechCard path='https://cdn.auth0.com/blog/new-bootstrap4/logo.png' title='Bootstrap' />
                 <TechCard path='https://diyhacking.com/wp-content/uploads/2017/04/Linux-Shell.png' title='Linux Terminal' />
 
                 
