@@ -6,12 +6,12 @@ const AboutMe = () => {
         <div style={{position: 'relative', marginTop:'5rem'}}>
             <AboutMeSection>
                 <AboutMeBlock>
-                    <Avatar src={`${process.env.API_URL}/api/pictures/avatar.jpg`} />
+                    <Avatar src={`/pictures/avatar.jpg`} />
                     <TitleBlock>
                         <AboutMeTitle>Michael Medvediev</AboutMeTitle>
                         <Divider>
                             <DividerLine/>
-                            <ReactIcon src={`${process.env.API_URL}/api/pictures/react.png`} />
+                            <ReactIcon src={`/pictures/react.png`} />
                             <DividerLine/>
                         </Divider>
                         <Title>Software Engineer - Web Developer - Musician</Title>
