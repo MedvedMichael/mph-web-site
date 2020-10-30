@@ -32,7 +32,7 @@ const AboutMe = () => {
 export default AboutMe
 
 const AboutMeSection = styled.section`
-    background: linear-gradient(to right, #5785ba, #c8d8e3);
+    background: linear-gradient(to right, #5e9be0, #c8d8e3);
     padding: 2rem 0;
     &:after {
         position: absolute;

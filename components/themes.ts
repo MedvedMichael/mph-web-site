@@ -1,11 +1,12 @@
 const light = {
     bg: {
         primary: '#93c5ed',
-        secondary: '#5785ba',
+        secondary: '#5e9be0',
         inset: '#e2e4e8',
         input: 'rgba(65,67,78,0.12)',
         nav: '#437dbf',
-        aboutMe: 'linear-gradient(to right, #5785ba, #c8d8e3)'
+        aboutMe: 'linear-gradient(to right, #5e9be0, #c8d8e3)',
+        card: 'linear-gradient(to right, #5e9be0, #c8d8e3)'
     },
     text: {
         primary: '#fbfbfc',
@@ -16,7 +17,7 @@ const light = {
         onPrimary: '#ffffff'
     },
     border: {
-        nav: '1px solid #282828'
+        card: '1px solid #18304d'
     },
     dark: false
     // ...
@@ -29,7 +30,8 @@ const dark = {
         inset: '#111111',
         input: 'rgba(191,193,201,0.12)',
         nav: '#18304d',
-        aboutMe: 'linear-gradient(to right, #162333, #3160d6)'
+        aboutMe: 'linear-gradient(to right, #162333, #3160d6)',
+        card: 'linear-gradient(to right, #162333, #3160d6)'
     },
     text: {
         primary: '#fbfbfc',
@@ -40,7 +42,7 @@ const dark = {
         onPrimary: '#050505'
     },
     border: {
-        nav: '1px solid #282828'
+        card: '2px solid #3979ad'
     },
     dark: true
     // ...
@@ -70,7 +72,8 @@ const defaultTheme = {
     },
     transition: {
         primary: 'all 300ms linear 0s',
-        bg: 'background 300ms linear 0s'
+        bg: 'background 300ms linear 0s',
+        opacity: 'opacity 200ms ease'
     }
     // ...
 };

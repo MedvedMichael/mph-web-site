@@ -1,5 +1,6 @@
 import { NextComponentType, NextPage } from "next"
 import Head from "next/head"
+import { useState } from "react"
 import AboutMe from "../components/about-me/about-me"
 import MainLayout from "../components/main-layout/main-layout"
 import PostsList from "../components/posts-list/posts-list"
@@ -12,15 +13,14 @@ interface BlogPageProps {
     posts?: Post[]
 }
 
-const BlogPage: NextPage<BlogPageProps> = ({posts}) => {
+const BlogPage: NextPage<BlogPageProps> = (props) => {
+
+    const [posts, setPosts] = useState(props.posts)
 
     return (
         <>
-            
             <MainLayout>
-
                 <PostsList posts={posts} />
-
             </MainLayout>
         </>
     )
