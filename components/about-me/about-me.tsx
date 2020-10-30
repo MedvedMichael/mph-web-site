@@ -1,13 +1,20 @@
+import { animated, useSpring } from 'react-spring';
 import styled, { StyledComponent } from 'styled-components';
 
 const AboutMe = () => {
+
+    const animation = useSpring({
+        from: { opacity: 0 },
+        opacity: 1,
+        transition: 'opacity 500ms ease'
+    });
     // console.log(avatar);
     return (
         <div style={{position: 'relative', marginTop:'5rem'}}>
             <AboutMeSection>
                 <AboutMeBlock>
                     <Avatar src={`/pictures/avatar.jpg`} />
-                    <TitleBlock>
+                    <TitleBlock style={animation}>
                         <AboutMeTitle>Michael Medvediev</AboutMeTitle>
                         <Divider>
                             <DividerLine/>
@@ -54,7 +61,7 @@ const AboutMeBlock = styled.div`
     }
 `
 
-const TitleBlock = styled.div`
+const TitleBlock = styled(animated.div)`
     display: flex;
     flex-direction: column;
     padding: 1rem;

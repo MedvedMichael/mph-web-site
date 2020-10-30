@@ -1,17 +1,29 @@
 
 import { useState } from 'react';
 import styled, { StyledComponent } from 'styled-components';
+import { VisibilityContainer } from '../visibility-container/visibility-container';
 
-const SkillsBlock = () => {
-    // console.log(avatar);
+const SkillsBlock = ({ }) => {
+
+
     return (
-        <SkillsBlockContainer>
+        <SkillsBlockContainer >
             <Title>
-                <h3>I'm still studying at the best faculty in KPI, Kiev (my own opinion :)</h3>
-                <h1>BUT!</h1>
-                <h3>I'm already a skilled developer!😎</h3>
+                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                    <h3>I'm still studying at the best faculty in KPI, Kiev (my own opinion😉)</h3>
+                </VisibilityContainer>
+                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                    <h1>BUT!</h1>
+                </VisibilityContainer>
+                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+
+                    <h3>I'm already a skilled developer!😎</h3>
+                </VisibilityContainer>
+
             </Title>
 
+
+            <div>
             <SkillsBox>
                 <TechCard path='https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png' title='JavaScript' />
                 <TechCard path='https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/026/full/react.png' title='React' />
@@ -29,11 +41,14 @@ const SkillsBlock = () => {
                 <TechCard path='https://cdn.auth0.com/blog/new-bootstrap4/logo.png' title='Bootstrap' />
                 <TechCard path='https://diyhacking.com/wp-content/uploads/2017/04/Linux-Shell.png' title='Linux Terminal' />
 
-                
+
             </SkillsBox>
+            </div>
 
             <Title>
-                <h3>and more...</h3>
+                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                    <h3>and more...</h3>
+                </VisibilityContainer>
             </Title>
         </SkillsBlockContainer>
     );
@@ -55,9 +70,13 @@ const TechCard = ({ path, title }: TechCardProps) => {
     }
 
     return (
-        <Card style={inverted ? {transform: 'rotateY(360deg)'}:{}} onClick={onTechCardClick}>
-            <CardImage src={path} />
-            <CardTitle>{title}</CardTitle>
+        <Card style={inverted ? { transform: 'rotateY(360deg)' } : {}} onClick={onTechCardClick}>
+            <VisibilityContainer from={{ transform: 'translate3d(4rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardImage src={path} />
+                    <CardTitle>{title}</CardTitle>
+                </div>
+            </VisibilityContainer>
         </Card>
     )
 }
@@ -71,7 +90,8 @@ const SkillsBlockContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    color: ${props => props.theme.text.primary}
+    color: ${props => props.theme.text.primary};
+    position: relative;
 `
 
 const Title = styled.div`
@@ -88,7 +108,6 @@ const SkillsBox = styled.div`
     justify-content: center;
     margin-top: 1rem;
     padding: 2% 5%;
-
 `
 
 const Card = styled.div`

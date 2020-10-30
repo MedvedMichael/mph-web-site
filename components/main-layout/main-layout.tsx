@@ -2,43 +2,24 @@ import Head from "next/head";
 import { useEffect, useState, createContext } from "react";
 import styled from "styled-components";
 import Footer from "../footer/footer";
-import Header from "../header/header";
+import Navbar from "../navbar/navbar";
 
 
-const MainLayout = ({ children }) => {
-
-    const [style, setStyle] = useState('')
-    const [mounted, setMounted] = useState(false)
-    // const [theme, setTheme] = useState('light')
-
-    useEffect(() => {
-        getStyle('light').then(setStyle).then(() => setMounted(true))
-    }, [])
-
-
-
-    const body = (
+const MainLayout = ({ children }) => (
         <>
             <Head>
                 <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script>
-                {/* <style>{style}</style> */}
-                {/* <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-    <script src="./api/firebase"></script> */}
             </Head>
             <Main>
-                <Header />
+                <Navbar/>
                 <MainContainer >
                     {children}
                 </MainContainer>
                 <Footer />
             </Main>
         </>)
+    
 
-    if (!mounted)
-        return <div style={{ visibility: 'hidden' }}>{body}</div>
-
-    return body
-}
 
 const getStyle = async (theme: string) => fetch(process.env.API_URL + '/api/bootstrap?theme=' + theme).then(res => res.text())
 

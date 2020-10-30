@@ -27,8 +27,6 @@ const FooterView = () => {
                             <a href="mailto:misha.medvedev2001@gmail.com" target="_blank">
                                 <ContactIcon aria-hidden={true} className="fas fa-envelope-open-text" />
                             </a>
-
-
                         </ContactMeGroup>
                     </FooterGroup>
                     <FooterGroup>

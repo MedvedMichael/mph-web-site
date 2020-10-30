@@ -8,10 +8,15 @@ const DarkThemeContext = createContext(null)
 const Providers = ({ children }) => {
     const darkMode = useDarkMode(false, { storageKey: null, onChange: null })
     const theme = darkMode.value ? darkTheme : lightTheme
-
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
+        const localTheme = localStorage.getItem('theme')
+        if(localTheme){
+            if(localTheme === 'light')
+                darkMode.disable()
+            else darkMode.enable()
+        }
         setMounted(true)
     }, [])
 

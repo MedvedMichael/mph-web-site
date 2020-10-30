@@ -4,13 +4,16 @@ import Link from 'next/link'
 
 import BurgerMenu from "./burger-menu";
 import CollapseMenu from "./collapse-menu";
-import NavbarProps from "../../interfaces/NavbarProps";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DarkThemeContext } from "../Providers";
 
 
 
-const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
+const Navbar = () => {
+
+  const [navbarState, setNavbarState] = useState(false)
+
+  const handleNavbar = () => setNavbarState(!navbarState)
 
   const darkMode = useContext(DarkThemeContext)
   const barAnimation = useSpring({
@@ -25,6 +28,12 @@ const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
     config: config.wobbly,
   });
 
+  const onChangeThemeButtonClick = () => {
+    darkMode.toggle()
+    console.log(darkMode.value)
+    localStorage.setItem('theme', !darkMode.value ? 'dark' : 'light')
+  }
+
   return (
     <>
     {/* 'navbar navbar-expand-lg navbar-light bg-light' */}
@@ -34,19 +43,19 @@ const Navbar = ({ navbarState, handleNavbar }: NavbarProps) => {
             <Link href='/'>MPH's web site</Link>
           </NavbarTitle>
           <NavLinks style={linkAnimation}>
-            <li className="nav-item nav-link">
+            <li>
               <Link href="/">Home</Link>
             </li>
-            <li className="nav-item nav-link">
+            <li>
               <Link href="/blog">Blog</Link>
             </li>
-            <li className="nav-item nav-link">
-              <Link href="#">Portfolio</Link>
+            <li>
+                <Link href="/gallery">Gallery</Link>
             </li>
 
-            <ChangeThemeButton className="nav-item nav-link">
-              <a onClick={darkMode.toggle}>
-                <i aria-hidden={true} className={`${!darkMode.value ? ' far fa-sun' : ' fas fa-cloud-moon'}`} />
+            <ChangeThemeButton>
+              <a onClick={onChangeThemeButtonClick}>
+                <i aria-hidden={true} className={`${!darkMode.value ? ' fas fa-sun' : ' fas fa-cloud-moon'}`} />
               </a>
             </ChangeThemeButton>
             {/* <li className="nav-item dropdown">

@@ -25,18 +25,18 @@ const CollapseMenu = ({ navbarState, handleNavbar }: NavbarProps) => {
       >
         {/* {style={{color: theme === 'light' ? '#2d3436' :'#dfe6e9'}} */}
         <NavLinks >
-          <li className="nav-item nav-link">
+          <li>
             <Link href="/">Home</Link>
           </li>
-          <li className="nav-item nav-link">
+          <li>
             <Link href="/blog">Blog</Link>
           </li>
-          <li className="nav-item nav-link">
-            <Link href="#">Portfolio</Link>
+          <li>
+            <Link href="/gallery">Gallery</Link>
           </li>
-          <li className="nav-item nav-link">
+          <li>
             <a onClick={darkMode.toggle}>
-              <i aria-hidden={true} className={`${!darkMode.value ? ' far fa-sun' : ' fas fa-cloud-moon'}`} />
+              <i aria-hidden={true} className={`${!darkMode.value ? ' fas fa-sun' : ' fas fa-cloud-moon'}`} />
             </a>
           </li>
         </NavLinks>
