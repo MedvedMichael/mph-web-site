@@ -9,13 +9,13 @@ const SkillsBlock = ({ }) => {
     return (
         <SkillsBlockContainer >
             <Title>
-                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                <VisibilityContainer from={{ transform: 'translate3d(-1rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
                     <h3>I'm still studying at the best faculty in KPI, Kiev (my own opinion😉)</h3>
                 </VisibilityContainer>
-                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                <VisibilityContainer from={{ transform: 'translate3d(-1rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
                     <h1>BUT!</h1>
                 </VisibilityContainer>
-                <VisibilityContainer from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                <VisibilityContainer from={{ transform: 'translate3d(-1rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
 
                     <h3>I'm already a skilled developer!😎</h3>
                 </VisibilityContainer>

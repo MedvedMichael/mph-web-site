@@ -4,26 +4,43 @@ import styled from "styled-components";
 import Footer from "../footer/footer";
 import Navbar from "../navbar/navbar";
 
+const AdminContext = createContext('')
 
-const MainLayout = ({ children }) => (
+const MainLayout = ({ children }) => {
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    useEffect(() => {
+        const check = localStorage.getItem('isAdmin')
+        if(check && check === process.env.SECRET_WORD){
+            setIsAdmin(true)
+        }
+    })
+    
+    return (
         <>
             <Head>
                 <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script>
             </Head>
             <Main>
-                <Navbar/>
-                <MainContainer >
-                    {children}
-                </MainContainer>
-                <Footer />
+                <AdminContext.Provider value={isAdmin ? 'admin' : ''}>
+                    <Navbar />
+                    <MainContainer >
+                        {children}
+                    </MainContainer>
+                    <Footer />
+                </AdminContext.Provider>
             </Main>
         </>)
+}
     
 
 
 const getStyle = async (theme: string) => fetch(process.env.API_URL + '/api/bootstrap?theme=' + theme).then(res => res.text())
 
+
+
 export default MainLayout
+export {AdminContext}
 
 const Main = styled.div`
     display: flex;

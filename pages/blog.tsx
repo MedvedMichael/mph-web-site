@@ -1,13 +1,8 @@
-import { NextComponentType, NextPage } from "next"
-import Head from "next/head"
+import { NextPage } from "next"
 import { useState } from "react"
-import AboutMe from "../components/about-me/about-me"
 import MainLayout from "../components/main-layout/main-layout"
 import PostsList from "../components/posts-list/posts-list"
 import Post from "../interfaces/Post"
-import { getPostById } from "../services/fb-service"
-
-
 
 interface BlogPageProps {
     posts?: Post[]
@@ -16,7 +11,6 @@ interface BlogPageProps {
 const BlogPage: NextPage<BlogPageProps> = (props) => {
 
     const [posts, setPosts] = useState(props.posts)
-
     return (
         <>
             <MainLayout>
@@ -26,7 +20,20 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
     )
 }
 
+// import hostImage from "../services/image-hosting"
 
+// const UploadPage = () => {
+
+//     const uploadFile = (target: HTMLInputElement) => {
+//         target.files[0].arrayBuffer().then(buffer => hostImage(Buffer.from(buffer)).then(res => console.log(res)))
+//     }
+//     return (
+//     <>
+//         <input type="file" onChange={({target}) => uploadFile(target)}/>
+//     </>)
+// }
+
+// export default UploadPage
 
 
 

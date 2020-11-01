@@ -30,7 +30,6 @@ const Navbar = () => {
 
   const onChangeThemeButtonClick = () => {
     darkMode.toggle()
-    console.log(darkMode.value)
     localStorage.setItem('theme', !darkMode.value ? 'dark' : 'light')
   }
 

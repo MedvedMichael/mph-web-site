@@ -35,7 +35,7 @@ const CollapseMenu = ({ navbarState, handleNavbar }: NavbarProps) => {
             <Link href="/gallery">Gallery</Link>
           </li>
           <li>
-            <a onClick={darkMode.toggle}>
+            <a onClick={() => {darkMode.toggle(); localStorage.setItem('theme', !darkMode.value ? 'dark' : 'light')}}>
               <i aria-hidden={true} className={`${!darkMode.value ? ' fas fa-sun' : ' fas fa-cloud-moon'}`} />
             </a>
           </li>

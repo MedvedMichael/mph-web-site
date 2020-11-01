@@ -27,3 +27,4 @@ if (admin.apps.length === 0) {
 
 // export type FirestoreCollectionReference = admin.firestore.CollectionReference;
 export default admin.firestore().collection("posts");
+export const comments = admin.firestore().collection('comments')
