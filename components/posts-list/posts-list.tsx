@@ -1,7 +1,6 @@
 import Post, {Comment} from '../../interfaces/Post'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import { useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../main-layout/main-layout'
 
 interface PostsListProps {
@@ -19,20 +18,7 @@ const PostsList = ({ posts }: PostsListProps) => {
             </CardsList>
         </PostsListView>
     )
-
 }
-
-const PostsListView = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex:1;
-    padding: 2%;
-    margin-top: 6rem;
-`
-
-const CardsList = styled.div`
-    margin-top: 1.5rem;
-`
 
 interface PostViewProps {
     post: Post,
@@ -40,23 +26,31 @@ interface PostViewProps {
 }
 
 const PostView = ({ post, isAdmin }: PostViewProps) => {
-    const { text, title, id, comments } = post
+    const { text, title, id, comments: com } = post
 
     const [show, setShow] = useState(false)
+    const [comments, setComments] = useState(com)
 
-    const cardText = show ? text : text.slice(0,70).replace('\n', ' ') + '...'
-    
+    // const cardText = show ? text : text.slice(0,70).replace('\n', ' ') + '...'
+    const addComment = (comment: Comment) => {
+        // console.log(comment)
+        setComments([comment, ...comments])
+    }
+
     return (
-        <PostViewCard onClick={() => setShow(!show)}>
-            <CardTitle>
-                {title}
-            </CardTitle>
-            <CardText>
-                {cardText}
-            </CardText>
+        <PostViewCard >
+            <div onClick={({target}) => setShow(!show)}>
+                <CardTitle>
+                    {title}
+                </CardTitle>
+                <CardText>
+                    {text}
+                </CardText>
+            </div>
             <CardComments style={show ? {} : {display: 'none'}}>
                 <CommentsTitle>Comments</CommentsTitle>
-                {comments ? comments.map(comment => <CommentView key={comment.name + comment.timestamp} data={comment}/>) : 'There are no comments yet'}
+                <LeaveCommentBlock addComment={addComment} postId={id}/>
+                {comments ? comments.map((comment, index) => <CommentView key={'comment' + index } data={comment}/>) : 'There are no comments yet'}
             </CardComments>
         </PostViewCard>
     )
@@ -75,7 +69,98 @@ const CommentView = ({data}: CommentProps) => {
     </CommentCard>)
 }
 
+const LeaveCommentBlock = ({postId, addComment}) => {
+    const [name, setName] = useState('')
+    const [text, setText] = useState('')
+
+    const handleSubmit = (ev: FormEvent) => {
+        ev.preventDefault()
+        fetch(`${process.env.API_URL}/api/comments`, {
+            method: 'POST',
+            body: JSON.stringify({name, text, postId})
+        }).then(res => res.json())
+        .then(res => addComment(res.comment))
+        
+    }
+    return (
+        <LeaveCommentForm onSubmit={handleSubmit}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
+                
+                <div style={{ display: 'flex', marginRight: 'auto' }}>
+                    <div style={{ display: 'flex', margin: 'auto 0' }}>
+                        <h4>Name</h4>
+                        <LeaveCommentName type="text" onChange={({ target }) => setName(target.value)} />
+                    </div>
+                </div>
+                <TextAreaBlock>
+                    <h4>Leave comment</h4>
+                    <TextInput onChange={({target}) => setText(target.value)} style={{ width: '95%' }}/>
+                </TextAreaBlock>
+            </div>
+            <div>
+                <LeaveCommentButton type="submit" value="Post comment" />
+            </div>
+        </LeaveCommentForm>)
+}
+
+
 export default PostsList
+
+const LeaveCommentForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    color: ${props => props.theme.text.primary};
+    padding-bottom: .5rem;
+`
+const LeaveCommentName = styled.input`
+    background: ${props => props.theme.bg.inset};
+    transition: ${props => props.theme.transition.primary};
+    border-radius: 0.25rem;
+    font-size: ${props => props.theme.fontSizes[0]};
+    color: ${props => props.theme.text.primary};
+    padding: .5rem;
+    appearance: none;
+    -webkit-appearance: none;
+    flex-grow: 1;
+    margin-left: 1rem;
+`
+
+const LeaveCommentButton = styled.input`
+    display: block;
+    margin-right: auto;
+    margin-top: .5rem;
+    font-size: ${props => props.theme.fontSizes[0]};
+    background: #3160d6;
+    color: ${props => props.theme.text.primary};
+    padding: .5rem;
+    ${props => props.theme.dark ? 'border-color:#000;' : 'border: none;'}
+`
+
+const TextAreaBlock = styled.div`
+    flex-grow: 1;
+`
+
+const TextInput = styled.textarea`
+    min-height: 4rem;
+    background: ${props => props.theme.bg.inset};
+    transition: ${props => props.theme.transition.primary};
+    color: ${props => props.theme.text.primary};
+    resize: none;
+
+`
+
+
+const PostsListView = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    padding: 2%;
+    margin-top: 6rem;
+`
+
+const CardsList = styled.div`
+    margin-top: 1.5rem;
+`
 
 const CommentsTitle = styled.h3`
     color: ${props => props.theme.text.primary}
@@ -85,12 +170,14 @@ const CommentCard = styled.div`
     flex-direction: column;
     min-width: 0;
     background: ${props => props.theme.bg.secondary};
+    transition: ${props => props.theme.transition.primary};
     
     background-clip: border-box;
     border: ${props => props.theme.border.card};
     border-radius: 0.25rem;
     color: ${props => props.theme.text.primary};
     padding: .5rem;
+    margin: .25rem;
 
     & h3 {
 
@@ -113,7 +200,7 @@ const PostViewCard = styled.div`
     display: flex;
     flex-direction: column;
     min-width: 0;
-    background: ${props => props.theme.bg.secondary};
+    background: ${props => props.theme.bg.inset};
     transition: ${props => props.theme.transition.primary};
   /*Linear gradient... */
     z-index:2;
@@ -156,6 +243,7 @@ const CardText = styled.h4`
     padding: .75rem 1rem;
     display: flex;
     word-break: normal;
+    user-select: none;
 `
 
 const CardComments = styled.div`

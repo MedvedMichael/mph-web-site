@@ -2,11 +2,11 @@ const light = {
     bg: {
         primary: '#93c5ed',
         secondary: '#5e9be0',
-        inset: '#e2e4e8',
+        inset: '#5e9be0',
         input: 'rgba(65,67,78,0.12)',
         nav: '#437dbf',
         aboutMe: 'linear-gradient(to right, #5e9be0, #c8d8e3)',
-        card: 'linear-gradient(to right, #5e9be0, #c8d8e3)'
+        card: 'linear-gradient(to right, #5e9be0, #6fa5e3)'
     },
     text: {
         primary: '#fbfbfc',
@@ -26,8 +26,8 @@ const light = {
 const dark = {
     bg: {
         primary: '#162333',
-        secondary: '#162333',
-        inset: '#111111',
+        secondary: '#18304d',
+        inset: '#162333',
         input: 'rgba(191,193,201,0.12)',
         nav: '#18304d',
         aboutMe: 'linear-gradient(to right, #162333, #3160d6)',
@@ -42,7 +42,7 @@ const dark = {
         onPrimary: '#050505'
     },
     border: {
-        card: '2px solid #3979ad'
+        card: '1px solid #3979ad'
     },
     dark: true
     // ...
