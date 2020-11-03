@@ -14,7 +14,7 @@ const LoginPage: NextPage = () => {
         const res = checkAdminCredentials(signInEmail, signInPassword)
         if (res) {
             history.push('/')
-            localStorage.setItem('user',JSON.stringify({email:signInEmail, isAdmin: true}))
+            localStorage.setItem('isAdmin', process.env.SECRET_WORD)
         }
     }
 
@@ -22,20 +22,20 @@ const LoginPage: NextPage = () => {
 
     const signInCard = (
         <div style={{margin:'10%', padding:'2%'}} className="login-card card">
-            <div className="login">
+            <div>
 
-                <h1 className="login-title-second">Sign in</h1>
+                <h1>Sign in</h1>
                 <div>
-                    <div className="input-group input-group-lg mb-3">
-                        <input type="text" className="form-control" placeholder="E-mail" aria-label="Username" onChange={({ target }) => setSignInEmail(target.value)} />
+                    <div>
+                        <input type="text" placeholder="E-mail" aria-label="Username" onChange={({ target }) => setSignInEmail(target.value)} />
 
                     </div>
-                    <div className="input-group input-group-lg mb-3">
-                        <input type="password" className="form-control" placeholder="Password" aria-label="Password" onChange={({ target }) => setSignInPassword(target.value)} />
+                    <div >
+                        <input type="password" placeholder="Password" aria-label="Password" onChange={({ target }) => setSignInPassword(target.value)} />
                     </div>
 
-                    <div className="form-group">
-                        <button className="btn btn-secondary login-button" type="submit" onClick={() => onSignInButtonClick()}>Sign in</button>
+                    <div >
+                        <button type="submit" onClick={() => onSignInButtonClick()}>Sign in</button>
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@ const LoginPage: NextPage = () => {
     )
 
     return (
-        <div className="login-page">
+        <div>
             {signInCard}
         </div>
     )

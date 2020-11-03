@@ -1,3 +1,4 @@
+import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from "next";
 import Post from "../../interfaces/Post";
 import {getAllPosts, getAllComments} from '../../services/fb-service'
@@ -30,7 +31,9 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
     const commQuery = await getAllComments()
     commQuery.forEach(doc => {
         const res = doc.data()
-        posts.find(post => post.id === res.postId).comments.push({name: res.name, text: res.text, timestamp: res.timestamp, postId: res.postId})
+        const timestamp = res.timestamp
+        const date = new admin.firestore.Timestamp(timestamp._seconds, timestamp._nanoseconds).toDate()
+        posts.find(post => post.id === res.postId).comments.push({name: res.name, text: res.text, timestamp: date, postId: res.postId})
     })
     res.status(200).send(posts)
 }

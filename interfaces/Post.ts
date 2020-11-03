@@ -1,7 +1,7 @@
 interface Comment {
     name: string,
     text: string,
-    timestamp: string,
+    timestamp: Date,
     postId: string
 }
 
@@ -9,6 +9,7 @@ interface Post {
     id: string,
     title: string,
     text: string,
+    images?: string[],
     comments: Array<Comment>
 }
 

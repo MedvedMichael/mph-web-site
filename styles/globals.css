@@ -67,3 +67,16 @@ input {
   border-radius: 0.25rem;
   appearance: none;
 }
+
+.std-button {
+  background: #3160d6;
+  color: #fff;
+  border: 1px solid #3979ad !important;
+  appearance: none;
+  border-radius: .25rem;
+  padding: .5rem;
+}
+
+input[type="file"] {
+    display: none;
+}

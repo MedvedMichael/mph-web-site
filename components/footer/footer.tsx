@@ -1,7 +1,10 @@
 
 
+import { useContext } from "react";
 import styled from "styled-components";
+import { AdminContext } from "../main-layout/main-layout";
 const FooterView = () => {
+    const isAdmin = useContext(AdminContext) === 'admin'
     return (
         <Footer>
             <FooterContainer>
@@ -36,6 +39,7 @@ const FooterView = () => {
                         </a>
                     </FooterGroup>
                 </Row>
+                {isAdmin ? <h4>Logined as Admin</h4> : null}
             </FooterContainer>
         </Footer>
     )

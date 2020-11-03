@@ -31,6 +31,11 @@ export const postComment = async (props: PostCommentProps) => {
     return uuid
 }
 
+export const patchPost = async (id: string, props) => {
+    // console.log(await (await posts.doc(id).get()).data())
+    return await posts.doc(id).update(props)
+}
+
 export const getCommentById = (uuid: string) => comments.doc(uuid).get()
 
 

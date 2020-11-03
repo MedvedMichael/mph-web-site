@@ -1,21 +1,33 @@
 import Post, {Comment} from '../../interfaces/Post'
 import styled from 'styled-components'
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../main-layout/main-layout'
-
+import admin from 'firebase-admin'
+import { RSISImage } from 'react-simple-image-slider'
+import dynamic from 'next/dynamic'
+const SimpleImageSlider = dynamic(() => import('react-simple-image-slider'), { ssr: false });
 interface PostsListProps {
     posts: Array<Post>
 }
 
-const PostsList = ({ posts }: PostsListProps) => {
+const PostsList = ({ posts: startPosts }: PostsListProps) => {
+    const [posts, setPosts] = useState(startPosts)
     const isAdmin = useContext(AdminContext) === 'admin'
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} isAdmin={isAdmin} />)
+
+    const addPostButton = isAdmin ? (
+        <div>
+            <AddPostButton className="std-button" type="button" value="Add post"></AddPostButton>
+        </div>
+    ) : null
     return (
         <PostsListView>
             <Title>Posts</Title>
             <CardsList>
                 {postsViews}
             </CardsList>
+            {addPostButton}
+            
         </PostsListView>
     )
 }
@@ -26,16 +38,22 @@ interface PostViewProps {
 }
 
 const PostView = ({ post, isAdmin }: PostViewProps) => {
-    const { text, title, id, comments: com } = post
+    const { text, title, id, images, comments: com } = post
 
     const [show, setShow] = useState(false)
     const [comments, setComments] = useState(com)
 
-    // const cardText = show ? text : text.slice(0,70).replace('\n', ' ') + '...'
+    const cardText = show ? text : text.slice(0,100).replace('\n', ' ') + '...'
     const addComment = (comment: Comment) => {
-        // console.log(comment)
+        console.log(comment)
         setComments([comment, ...comments])
     }
+    
+    useEffect(()=>{
+        comments.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+    })
+
+    const imgs: RSISImage[] = images.map<RSISImage>(img => {return {url: img}})
 
     return (
         <PostViewCard >
@@ -44,10 +62,15 @@ const PostView = ({ post, isAdmin }: PostViewProps) => {
                     {title}
                 </CardTitle>
                 <CardText>
-                    {text}
+                    {cardText}
                 </CardText>
+                
             </div>
             <CardComments style={show ? {} : {display: 'none'}}>
+            {imgs.length ? <SliderContainer >
+                    <SimpleImageSlider width='100%' height='100%' images={imgs}>
+                    </SimpleImageSlider>
+                </SliderContainer> : null}
                 <CommentsTitle>Comments</CommentsTitle>
                 <LeaveCommentBlock addComment={addComment} postId={id}/>
                 {comments ? comments.map((comment, index) => <CommentView key={'comment' + index } data={comment}/>) : 'There are no comments yet'}
@@ -60,13 +83,25 @@ interface CommentProps {
     data: Comment
 }
 
+const SliderContainer = styled.div`
+    position: relative;
+    margin: 0 auto;
+
+    width:80vw;
+    height: 45vw;
+`
+
 const CommentView = ({data}: CommentProps) => {
-    const {text, name} = data
+    const {text, name, timestamp} = data
+    const date = new Date(timestamp)
     return (
-    <CommentCard>
-        <h5>{name}</h5> 
-        <span>{text}</span>
-    </CommentCard>)
+        <CommentCard>
+            <CommentTitle>
+                <h5>{name}</h5>
+                <h6>{date.toLocaleDateString() + ' '+ date.toLocaleTimeString().slice(0,5)}</h6>
+            </CommentTitle>
+            <span>{text}</span>
+        </CommentCard>)
 }
 
 const LeaveCommentBlock = ({postId, addComment}) => {
@@ -75,17 +110,18 @@ const LeaveCommentBlock = ({postId, addComment}) => {
 
     const handleSubmit = (ev: FormEvent) => {
         ev.preventDefault()
+        if(!name || !text) return;
+
         fetch(`${process.env.API_URL}/api/comments`, {
             method: 'POST',
             body: JSON.stringify({name, text, postId})
         }).then(res => res.json())
         .then(res => addComment(res.comment))
-        
+
     }
     return (
         <LeaveCommentForm onSubmit={handleSubmit}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
-                
+            <LeaveCommentContainer >
                 <div style={{ display: 'flex', marginRight: 'auto' }}>
                     <div style={{ display: 'flex', margin: 'auto 0' }}>
                         <h4>Name</h4>
@@ -96,9 +132,9 @@ const LeaveCommentBlock = ({postId, addComment}) => {
                     <h4>Leave comment</h4>
                     <TextInput onChange={({target}) => setText(target.value)} style={{ width: '95%' }}/>
                 </TextAreaBlock>
-            </div>
+            </LeaveCommentContainer>
             <div>
-                <LeaveCommentButton type="submit" value="Post comment" />
+                <LeaveCommentButton className="std-button" type="submit" value="Post comment" />
             </div>
         </LeaveCommentForm>)
 }
@@ -130,10 +166,13 @@ const LeaveCommentButton = styled.input`
     margin-right: auto;
     margin-top: .5rem;
     font-size: ${props => props.theme.fontSizes[0]};
-    background: #3160d6;
-    color: ${props => props.theme.text.primary};
-    padding: .5rem;
     ${props => props.theme.dark ? 'border-color:#000;' : 'border: none;'}
+`
+
+const LeaveCommentContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: row-reverse;
 `
 
 const TextAreaBlock = styled.div`
@@ -156,6 +195,13 @@ const PostsListView = styled.div`
     flex:1;
     padding: 2%;
     margin-top: 6rem;
+`
+
+const AddPostButton = styled.input`
+    display: block;
+    margin-left: 1rem;
+    padding: .8rem;
+    ${props => props.theme.dark ? 'border-color:#000;' : 'border: none;'}
 `
 
 const CardsList = styled.div`
@@ -186,7 +232,15 @@ const CommentCard = styled.div`
     & h4 {
 
     }
+`
 
+const CommentTitle = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    & h6 {
+        margin-left: auto;
+    }
 `
 
 const Title = styled.h1`

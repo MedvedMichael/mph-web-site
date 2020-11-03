@@ -51,5 +51,7 @@ const Main = styled.div`
 `
 
 const MainContainer = styled.main`
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
 `

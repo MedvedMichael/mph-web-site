@@ -85,7 +85,7 @@ const TechCard = ({ path, title }: TechCardProps) => {
 
 
 const SkillsBlockContainer = styled.div`
-    background: ${props => props.theme.bg.secondary};
+    background: ${props => props.theme.bg.inset};
     transition: ${props => props.theme.transition.bg};
     display: flex;
     flex-direction: column;
