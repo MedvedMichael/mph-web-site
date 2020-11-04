@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { getPostById, patchPost } from "../../../services/fb-service"
+import { getPostById, patchPost } from "../../../services/server/fb-service"
 
 
 interface GetPostQuery extends NextApiRequest {

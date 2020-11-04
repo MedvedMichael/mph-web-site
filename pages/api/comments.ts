@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { type } from "os"
 import { admin } from "../../config/fb"
-import { getCommentById, postComment } from "../../services/fb-service"
+import { getCommentById, postComment } from "../../services/server/fb-service"
 
 const comment = async (req: NextApiRequest, res: NextApiResponse) => {
     if(req.method === 'POST'){

@@ -4,27 +4,22 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import MainLayout from "../components/main-layout/main-layout"
 import Post from "../interfaces/Post"
-import { RSISImage } from "react-simple-image-slider";
-import dynamic from "next/dynamic";
-import hostImage from "../services/image-hosting"
-const SimpleImageSlider = dynamic(() => import('react-simple-image-slider'), { ssr: false });
+import hostImage from "../services/client/image-hosting"
+import Slider from "../components/slider/slider"
+import { getPostById, patchPost } from "../services/client/blog-service"
+
 
 interface EditorPageProps {
     post?: Post,
     id?: string
 }
 
-//@ts-ignore
+// @ts-ignore
 const EditorPage: NextPage = ({post, id}: EditorPageProps) => {
 
-    // const {text, title, images} = post
     const [text, setText] = useState(post.text)
     const [title, setTitle] = useState(post.title)
     const [images, setImages] = useState(post.images ? post.images : []) 
-//['https://kimcoder.github.io/demo/react-simple-image-slider/images/2.jpg','https://kimcoder.github.io/demo/react-simple-image-slider/images/5.jpg']
-    const [slider, setSlider] = useState(null)
-    const imgs: RSISImage[] = images.map<RSISImage>(img => {return {url: img}})
-    
     const history = useRouter()
     
     useEffect(() => {
@@ -35,35 +30,22 @@ const EditorPage: NextPage = ({post, id}: EditorPageProps) => {
 
     const postPictureHandler = async ({target}) => {
         const url = await target.files[0].arrayBuffer().then(buffer => hostImage(Buffer.from(buffer)))
-        // console.log(url)
         setImages([...images, url])
     }
 
     const saveChangesHandler = async () => {
-        const res = await fetch(`${process.env.API_URL}/api/post/` + id, {
-            method: 'PATCH',
-            mode: 'cors',
-            body: JSON.stringify({title, text, images})
-        })
+        const res = await patchPost({id, text, title, images})
         if(res.ok)
         history.push('/blog')
-
     }
-
-
 
     return (
         <MainLayout>
             <EditorPageView>
                 <Title>Editor</Title>
-
                 <TitleEditor placeholder="Input title" value={title} onChange={({ target }) => setTitle(target.value)}></TitleEditor>
                 <TextEditor placeholder="Input text" value={text} onChange={({ target }) => setText(target.value)}></TextEditor>
-                {slider}
-                {imgs.length ? <SliderContainer >
-                    <SimpleImageSlider width='100%' height='100%' images={imgs}>
-                    </SimpleImageSlider>
-                </SliderContainer> : null}
+                <Slider images={images}/>
                 <div style={{ marginTop: '1rem', display: 'flex' }}>
                     <PostPictureButton>
                         <input type="file" onChange={postPictureHandler} />
@@ -86,8 +68,7 @@ interface EditorContext extends NextPageContext {
 
 EditorPage.getInitialProps = async ({query}: EditorContext) => {
     try {
-        const res = await fetch(`${process.env.API_URL}/api/post/` + query.id)
-        const post: Post = await res.json().then(r => r.post)
+        const post: Post = await getPostById(query.id)
         return {post, id: query.id}
     }
     catch (err) {
@@ -101,15 +82,6 @@ const Title = styled.h2`
     display: block;
     margin: 0 auto;
     color: ${props => props.theme.text.primary};
-
-`
-
-const SliderContainer = styled.div`
-    position: relative;
-    margin: 0 auto;
-
-    width:80vw;
-    height: 45vw;
 `
 
 const EditorPageView = styled.div`
@@ -117,7 +89,6 @@ const EditorPageView = styled.div`
     display: flex;
     flex-direction: column;
     padding: 2rem;
-
 `
 
 const TitleEditor = styled.input`
@@ -143,5 +114,4 @@ const PostPictureButton = styled.label`
 
 const SaveChangesButton = styled.div`
     margin-top: 1rem;
-
 `

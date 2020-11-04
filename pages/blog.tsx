@@ -3,6 +3,7 @@ import { useState } from "react"
 import MainLayout from "../components/main-layout/main-layout"
 import PostsList from "../components/posts-list/posts-list"
 import Post from "../interfaces/Post"
+import { getAllPosts } from "../services/client/blog-service"
 
 interface BlogPageProps {
     posts?: Post[]
@@ -20,29 +21,10 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
     )
 }
 
-// import hostImage from "../services/image-hosting"
-
-// const UploadPage = () => {
-
-//     const uploadFile = (target: HTMLInputElement) => {
-//         target.files[0].arrayBuffer().then(buffer => hostImage(Buffer.from(buffer)).then(res => console.log(res)))
-//     }
-//     return (
-//     <>
-//         <input type="file" onChange={({target}) => uploadFile(target)}/>
-//     </>)
-// }
-
-// export default UploadPage
-
-
-
 
 BlogPage.getInitialProps = async () => {
     try {
-        const res = await fetch(`${process.env.API_URL}/api/posts`)
-        const posts: Post[] = await res.json()
-        
+        const posts: Post[] = await getAllPosts()
         return {posts}
     }
     catch (err) {

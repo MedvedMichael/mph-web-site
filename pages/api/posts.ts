@@ -1,27 +1,10 @@
 import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from "next";
 import Post from "../../interfaces/Post";
-import {getAllPosts, getAllComments} from '../../services/fb-service'
-
-// interface PostResponse {
-//     _fieldsProto: {
-//         text: {
-//             stringValue: string,
-//             valueType: string
-//         },
-//         title: {
-//             stringValue: string,
-//             valueType: string
-//         }
-//     }
-// }
-
-// interface FirebaseResponseQuery {
-//     _materializedDocs: PostResponse[]
-// }
+import {getAllPosts, getAllComments} from '../../services/server/fb-service'
 
 const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
-    // console.log(posts)
+    
     const query = await getAllPosts()
     const posts: Array<Post> = query.docs.map(doc => {
         const res = doc.data()
