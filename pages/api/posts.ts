@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from "next";
-import Post from "../../interfaces/Post";
+import {Post} from "../../interfaces/blog-interfaces";
 import {getAllPosts, getAllComments} from '../../services/server/fb-service'
 
 const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {

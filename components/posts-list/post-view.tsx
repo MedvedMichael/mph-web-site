@@ -1,7 +1,8 @@
+import { useRouter } from "next/router"
 import React, { useState, useEffect } from "react"
 import { RSISImage } from "react-simple-image-slider"
 import styled from "styled-components"
-import Post, {Comment} from "../../interfaces/Post"
+import {Post, Comment} from "../../interfaces/blog-interfaces"
 import Slider from "../slider/slider"
 import CommentView from "./comment-view"
 import LeaveCommentBlock from "./leave-comment-block"
@@ -23,18 +24,40 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
         console.log(comment)
         setComments([comment, ...comments])
     }
+
+    const history = useRouter()
     
     useEffect(()=>{
         comments.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
     })
 
+    const onCardClick = ({target}) => {
+        console.log(target.tagName)
+        if(target.tagName !== 'BUTTON') {
+            setShow(!show)
+        }
+    }
+
+    const onEditPostButtonClick = () => {
+        history.push(`/editor?id=${id}`)
+    }
+
+    const editPostButton = isAdmin ? (
+        <EditPostButton>
+            <button onClick={onEditPostButtonClick} className="std-button">Edit</button>
+        </EditPostButton>
+    ) : null
 
     return (
         <PostViewCard >
-            <div onClick={() => setShow(!show)}>
-                <CardTitle>
-                    {title}
-                </CardTitle>
+            
+            <div onClick={onCardClick}>
+                <TitleBlock>
+                    <CardTitle>
+                        {title}
+                    </CardTitle>
+                    {editPostButton}
+                </TitleBlock>
                 <CardText>
                     {cardText}
                 </CardText>
@@ -87,6 +110,11 @@ const PostViewCard = styled.div`
     }
 `
 
+const TitleBlock = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
 const CardTitle = styled.h2`
     text-align: left;
     text-transform: uppercase;
@@ -110,4 +138,8 @@ const CardComments = styled.div`
 
 const CommentsTitle = styled.h3`
     color: ${props => props.theme.text.primary}
+`
+
+const EditPostButton = styled.div`
+    margin: auto 1rem auto auto;
 `

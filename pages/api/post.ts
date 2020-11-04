@@ -5,6 +5,7 @@ export default async function addPost (req: NextApiRequest, res: NextApiResponse
     if(req.method === 'POST') {
         try {
             const uuid = await addNewPost()
+            console.log(uuid)
             res.send({ id: uuid })
         }
         catch (error) {

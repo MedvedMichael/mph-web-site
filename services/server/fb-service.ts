@@ -9,14 +9,13 @@ export const getAllPosts = async () => {
     return res
 }
 
-export const patchPost = async (id: string, props) => {
-    // console.log(await (await posts.doc(id).get()).data())
+export const patchPost = async (id: string, props: {text: string, title: string, images: string[]}) => {
     return await posts.doc(id).update(props)
 }
 
 export const addNewPost = async () => {
     const uuid = uuidv4()
-    await comments.doc(uuid).set({title: 'Title', text: 'Text', images: [], timestamp: admin.firestore.Timestamp.fromDate(new Date())})
+    await posts.doc(uuid).set({title: 'Title', text: 'Text', images: [], timestamp: admin.firestore.Timestamp.fromDate(new Date())})
     return uuid
 }
 

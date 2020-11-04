@@ -2,7 +2,7 @@ import { NextPage } from "next"
 import { useState } from "react"
 import MainLayout from "../components/main-layout/main-layout"
 import PostsList from "../components/posts-list/posts-list"
-import Post from "../interfaces/Post"
+import {Post} from "../interfaces/blog-interfaces"
 import { getAllPosts } from "../services/client/blog-service"
 
 interface BlogPageProps {

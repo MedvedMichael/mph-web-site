@@ -1,9 +1,11 @@
-import Post from '../../interfaces/Post'
+import {Post} from '../../interfaces/Post'
 import styled from 'styled-components'
 import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../main-layout/main-layout'
 import dynamic from 'next/dynamic'
 import PostView from './post-view'
+import { useRouter } from 'next/router'
+import { addDefaultPost } from '../../services/client/blog-service'
 interface PostsListProps {
     posts: Array<Post>
 }
@@ -13,9 +15,15 @@ const PostsList = ({ posts: startPosts }: PostsListProps) => {
     const isAdmin = useContext(AdminContext) === 'admin'
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} isAdmin={isAdmin} />)
 
+    const history = useRouter()
+    const onAddPostHandler = async () => {
+        const id = await addDefaultPost()
+        history.push(`/editor?id=${id}`)
+    }
+
     const addPostButton = isAdmin ? (
         <div>
-            <AddPostButton className="std-button" type="button" value="Add post"></AddPostButton>
+            <AddPostButton onClick={onAddPostHandler} className="std-button" type="button" value="Add post"></AddPostButton>
         </div>
     ) : null
     return (

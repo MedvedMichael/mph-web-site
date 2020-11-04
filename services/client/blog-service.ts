@@ -6,6 +6,14 @@ interface AddCommentProps {
     postId: string
 }
 
+export const addDefaultPost: () => Promise<string> = async () => 
+    fetch(`${process.env.API_URL}/api/post`, {
+        method: 'POST',
+    })
+    .then(res => res.json())
+    .then(res => res.id)
+
+
 export const addNewComment = async (props: AddCommentProps) =>
     fetch(`${process.env.API_URL}/api/comments`, {
         method: 'POST',
