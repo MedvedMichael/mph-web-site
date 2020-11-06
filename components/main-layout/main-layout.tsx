@@ -32,10 +32,6 @@ const MainLayout = ({ children }) => {
             </Main>
         </>)
 }
-    
-
-
-const getStyle = async (theme: string) => fetch(process.env.API_URL + '/api/bootstrap?theme=' + theme).then(res => res.text())
 
 
 

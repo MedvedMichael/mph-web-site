@@ -1,4 +1,4 @@
-import {Post} from '../../interfaces/Post'
+import {Post} from '../../interfaces/blog-interfaces'
 import styled from 'styled-components'
 import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../main-layout/main-layout'

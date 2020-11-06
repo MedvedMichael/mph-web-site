@@ -27,11 +27,11 @@ const dark = {
     bg: {
         primary: '#162333',
         secondary: '#18304d',
-        inset: '#162333',
+        inset: '#1f3761',
         input: 'rgba(191,193,201,0.12)',
         nav: '#18304d',
         aboutMe: 'linear-gradient(to right, #162333, #3160d6)',
-        card: 'linear-gradient(to right, #162333, #3160d6)'
+        card: 'linear-gradient(to right, #1f3761, #3160d6)'
     },
     text: {
         primary: '#fbfbfc',

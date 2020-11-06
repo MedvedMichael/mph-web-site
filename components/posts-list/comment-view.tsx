@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Comment} from '../../interfaces/Post'
+import {Comment} from '../../interfaces/blog-interfaces'
 
 interface CommentProps {
     data: Comment
