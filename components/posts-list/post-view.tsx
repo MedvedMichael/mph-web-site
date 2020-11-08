@@ -51,7 +51,7 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
     return (
         <PostViewCard >
             
-            <div onClick={onCardClick}>
+            <div style={{padding: '.5rem'}} onClick={onCardClick}>
                 <TitleBlock>
                     <CardTitle>
                         {title}
@@ -115,15 +115,16 @@ const TitleBlock = styled.div`
     flex-direction: row;
 `
 
-const CardTitle = styled.h2`
+const CardTitle = styled.h3`
     text-align: left;
     text-transform: uppercase;
     margin-left: 1rem;
     margin-top: .5rem;
 `
 
-const CardText = styled.h4`
-    padding: .75rem 1rem;
+const CardText = styled.h5`
+    padding: .75rem;
+    margin-bottom: 0;
     display: flex;
     word-break: normal;
     user-select: none;

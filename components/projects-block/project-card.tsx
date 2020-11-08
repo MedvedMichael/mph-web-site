@@ -55,8 +55,11 @@ const ProjectCardText = styled.span`
 
 const ProjectCardImage = styled(animated.img)`
     width: 80vw;
-    height: 44.5vw;
+    /* height: 44.5vw; */
+    height: auto;
     margin: 1rem auto 0 auto;
+    max-width: 60rem;
+    /* max-height: 33.375rem; */
 `
 
 const ProjectCardSources = styled.div`

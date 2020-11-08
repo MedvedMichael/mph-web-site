@@ -74,6 +74,7 @@ const Avatar = styled.img`
     margin-top: 2rem;
     padding-bottom: 2rem;
     width: 15rem;
+    max-width: 470px;
     flex-grow: 1;
 `
 const AboutMeTitle = styled.h1`

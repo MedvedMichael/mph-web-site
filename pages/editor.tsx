@@ -40,7 +40,7 @@ const EditorPage: NextPage = ({post, id}: EditorPageProps) => {
     }
 
     return (
-        <MainLayout>
+        <MainLayout title='Editor'>
             <EditorPageView>
                 <Title>Editor</Title>
                 <TitleEditor placeholder="Input title" value={title} onChange={({ target }) => setTitle(target.value)}></TitleEditor>

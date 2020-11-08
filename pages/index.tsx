@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout title="MPH's web site">
         <AboutMe />
         <SkillsBlock/>
         <ProjectsBlock/>

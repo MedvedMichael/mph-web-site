@@ -1,16 +1,19 @@
 import styled from "styled-components"
 import ProjectsSlider from "./projects-slider"
 import {projects} from './projects'
-
+import { VisibilityContainer } from '../visibility-container/visibility-container';
+import { config } from "react-spring";
 
 export default function ProjectsBlock(): JSX.Element {
 
     return (
         <ProjectsBlockView>
-            <Title>I've already done several great projects!!!</Title>
+            <VisibilityContainer mode={config.wobbly} from={{ transform: 'translate3d(-2rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
+                <Title>I've already done several great projects!!!</Title>
             <Subtitle>There are some of them:</Subtitle>
+            </VisibilityContainer>
             
-            <ProjectsSlider projects={projects}/>
+            <ProjectsSlider projects={projects} />
         </ProjectsBlockView>
     )
 }

@@ -11,11 +11,11 @@ interface BlogPageProps {
 
 const BlogPage: NextPage<BlogPageProps> = (props) => {
 
-    const [posts, setPosts] = useState(props.posts)
+    // const [posts, setPosts] = useState(props.posts)
     return (
         <>
-            <MainLayout>
-                <PostsList posts={posts} />
+            <MainLayout title={'Blog'}>
+                <PostsList posts={props.posts} />
             </MainLayout>
         </>
     )

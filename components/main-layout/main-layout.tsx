@@ -1,3 +1,4 @@
+
 import Head from "next/head";
 import { useEffect, useState, createContext } from "react";
 import styled from "styled-components";
@@ -6,7 +7,12 @@ import Navbar from "../navbar/navbar";
 
 const AdminContext = createContext('')
 
-const MainLayout = ({ children }) => {
+interface MainLayout {
+    title: string,
+    children: JSX.Element[]
+}
+
+const MainLayout = ({ children, title }) => {
     const [isAdmin, setIsAdmin] = useState(false)
 
     useEffect(() => {
@@ -20,6 +26,7 @@ const MainLayout = ({ children }) => {
         <>
             <Head>
                 <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script>
+                <title>{title}</title>
             </Head>
             <Main>
                 <AdminContext.Provider value={isAdmin ? 'admin' : ''}>

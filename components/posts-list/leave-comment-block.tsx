@@ -12,6 +12,8 @@ export default function LeaveCommentBlock ({postId, addComment}) {
         if(!name || !text) return;
 
         addNewComment({name, text, postId}).then(res => {
+            if(name === '' || text === '')
+                return;
             addComment(res.comment)
             setText('')
         })
@@ -82,5 +84,6 @@ const TextInput = styled.textarea`
     transition: ${props => props.theme.transition.primary};
     color: ${props => props.theme.text.primary};
     resize: none;
+    border: 1px solid #fff;
 
 `
