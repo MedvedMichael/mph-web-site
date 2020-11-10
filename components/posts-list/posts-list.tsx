@@ -49,7 +49,7 @@ const PostsListView = styled.div`
     flex-direction: column;
     flex:1;
     padding: 2%;
-    margin-top: 6rem;
+    margin-top: 1rem;
 `
 
 const AddPostButton = styled.input`

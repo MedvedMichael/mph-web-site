@@ -54,6 +54,7 @@ const Main = styled.div`
 `
 
 const MainContainer = styled.main`
+    padding-top: 5rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;

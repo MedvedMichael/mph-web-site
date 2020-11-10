@@ -10,7 +10,7 @@ const AboutMe = () => {
     });
     // console.log(avatar);
     return (
-        <div style={{position: 'relative', marginTop:'5rem'}}>
+        <div style={{position: 'relative'}}>
             <AboutMeSection>
                 <AboutMeBlock>
                     <Avatar src={`/pictures/avatar.jpg`} />
