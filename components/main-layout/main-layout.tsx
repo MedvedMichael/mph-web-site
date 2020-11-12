@@ -25,7 +25,7 @@ const MainLayout = ({ children, title }) => {
     return (
         <>
             <Head>
-                <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script>
+                {/* <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script> */}
                 <title>{title}</title>
             </Head>
             <Main>

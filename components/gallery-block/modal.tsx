@@ -39,7 +39,7 @@ const ModalBackground = styled(animated.div)`
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 5;
+    z-index: 7;
     /* background: rgba(0,0,0,0.5); */
     display: flex;
 `
@@ -58,7 +58,7 @@ const ModalView = styled(animated.div)`
     margin: 0 auto;
     margin-top: auto;
     margin-bottom: auto;
-    z-index:6;
+    z-index:8;
     /* bottom: auto; */
     /* margin: 0 auto; */
 

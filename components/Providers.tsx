@@ -29,7 +29,7 @@ const Providers = ({ children }) => {
             <>{children}</>
         </ThemeProvider>
     </DarkThemeContext.Provider>
-    // prevents ssr flash for mismatched dark mode
+    
     if (!mounted) {
         return <div style={{ visibility: 'hidden' }}>{body}</div>
     }

@@ -38,11 +38,14 @@ const ImageComponent = ({ src, onClick, gridArea }: ImageProps) => {
 }
 
 const LongboardsBlock = styled.div`
-    margin: 0 auto;
+    /* margin: 0 auto; */
     display: flex;
     flex-direction: column;
     padding: 2rem;
     padding-top: 0;
+    position: relative;
+    z-index: 6;
+    background: ${props => props.theme.bg.primary}
 `
 
 const LongboardsGrid = styled.div`
@@ -72,7 +75,7 @@ const Image = styled.img`
     transition: transform 200ms ease;
 
     &:hover {
-        transform: perspective(20rem) translateZ(10px)
+        transform: perspective(20rem) translateZ(5px)
     }
 `
 

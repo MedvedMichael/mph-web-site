@@ -92,7 +92,7 @@ const NavBar = styled(animated.nav)`
   top: 0;
   left: 0;
   /* position: relative; */
-  z-index: 5;
+  z-index: 8;
   font-size: 1.4rem;
   background-color: ${props => props.theme.bg.nav};
   transition: ${props => props.theme.transition.bg};

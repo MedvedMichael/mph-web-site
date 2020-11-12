@@ -32,7 +32,6 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
     })
 
     const onCardClick = ({target}) => {
-        console.log(target.tagName)
         if(target.tagName !== 'BUTTON') {
             setShow(!show)
         }

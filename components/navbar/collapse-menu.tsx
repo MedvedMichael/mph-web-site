@@ -52,7 +52,7 @@ const CollapseWrapper = styled(animated.div)`
   background: ${props => props.theme.bg.nav};
   transition: ${props => props.theme.transition.bg};
   position: fixed;
-  z-index:4;
+  z-index:7;
   top: 4.5rem;
   left: 0;
   right: 0;
