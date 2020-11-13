@@ -42,6 +42,7 @@ const ParallaxBgLayer = styled.div`
     z-index: 4;
     transform: translateZ(-8rem) scale(2);
     min-height: 100%;
+    opacity: .8;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -64,12 +65,4 @@ const Container = styled.div`
     flex-direction: column;
     text-align: center;
     margin: auto 0;
-`
-
-const BgImage = styled.img`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
 `

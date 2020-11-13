@@ -12,9 +12,9 @@ import Modal from "../components/gallery-block/modal";
 
 const GalleryPage: NextPage = () => {
 
-    const [isAdmin, setIsAdmin] = useState(false)
-    const [showModal, setShowModal] = useState<boolean>(true)
-    const [modalUrl, setModalUrl] = useState<string>('/pictures/longboard-4.jpg')
+    const [isAdmin, setIsAdmin] = useState<boolean>(false)
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [modalUrl, setModalUrl] = useState<string>('')
 
     const closeModal = () => {
         setShowModal(false)
@@ -36,34 +36,10 @@ const GalleryPage: NextPage = () => {
     }
 
     return (
-        // <MainLayout title='Gallery'>
-        //     <ParallaxView>
-        //     <Title>Gallery</Title>
-        //     <GalleryBlock />
-        //     </ParallaxView>
-        // </MainLayout>
-        <>
-            <Head>
-                {/* <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script> */}
-                <title>Gallery</title>
-            </Head>
-            <Main>
-                <AdminContext.Provider value={isAdmin ? 'admin' : ''}>
-                <Navbar />
-                {modal}
-                    <ParallaxView>
-                    
-                        <MainContainer >
-
-                            <Title>Gallery</Title>
-                            <GalleryBlock onImageClick={onImageClick} closeModal={closeModal}/>
-
-                        </MainContainer>
-                        <Footer />
-                    </ParallaxView>
-                </AdminContext.Provider>
-            </Main>
-        </>
+        <MainLayout Wrapper={ParallaxView} modal={modal} title='Gallery'> 
+            <Title>Gallery</Title>
+            <GalleryBlock onImageClick={onImageClick} closeModal={closeModal}/>
+        </MainLayout>
     )
 }
 
