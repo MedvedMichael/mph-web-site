@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import '../styles/fonts.css'
+import '../styles/real-fonts.css'
 import Providers from '../components/Providers'
 
 export default function MyApp({ Component, pageProps }) {
