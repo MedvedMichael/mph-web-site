@@ -129,7 +129,7 @@ const CardImage = styled.img`
     width: 100%;
     transition: transform 200ms ease;
     &:hover {
-        transform: perspective(20rem) translateZ(30px) 
+        transform: perspective(20rem) scale(1.1) 
         /* background: #fff; */
     }
     /* max-height: 10rem; */

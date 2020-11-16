@@ -10,15 +10,23 @@ interface PostsListProps {
     posts: Array<Post>
 }
 
-const PostsList = ({ posts: startPosts }: PostsListProps) => {
-    const [posts, setPosts] = useState(startPosts)
+const PostsList = ({ posts }: PostsListProps) => {
+    // const [posts, setPosts] = useState(startPosts)
     const isAdmin = useContext(AdminContext) === 'admin'
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} isAdmin={isAdmin} />)
 
     const history = useRouter()
     const onAddPostHandler = async () => {
-        const id = await addDefaultPost()
-        history.push(`/editor?id=${id}`)
+       
+        try {
+            const id = await addDefaultPost()
+            history.push(`/editor?id=${id}`)
+        }
+        catch (error) {
+            // console.log(history)
+            console.log(history.push(`/`))
+            console.log('CLICKED')
+        }
     }
 
     const addPostButton = isAdmin ? (
@@ -32,6 +40,7 @@ const PostsList = ({ posts: startPosts }: PostsListProps) => {
             <CardsList>
                 {postsViews}
             </CardsList>
+            {!posts || posts.length === 0 ? <NoPostsMessage id="no-posts-message">There are no posts yet :(</NoPostsMessage> : null}
             {addPostButton}
             
         </PostsListView>
@@ -66,6 +75,10 @@ const CardsList = styled.div`
 
 const Title = styled.h1`
     margin: 0 auto;
+    text-align: center;
+    color: ${props => props.theme.text.primary};
+`
+const NoPostsMessage = styled.h3`
     text-align: center;
     color: ${props => props.theme.text.primary};
 `

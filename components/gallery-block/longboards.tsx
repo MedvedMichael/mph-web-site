@@ -75,7 +75,7 @@ const Image = styled.img`
     transition: transform 200ms ease;
 
     &:hover {
-        transform: perspective(20rem) translateZ(5px)
+        transform: scale(1.03)
     }
 `
 

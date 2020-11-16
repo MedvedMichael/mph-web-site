@@ -48,7 +48,7 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
     ) : null
 
     return (
-        <PostViewCard >
+        <PostViewCard className="post-view">
             
             <div style={{padding: '.5rem'}} onClick={onCardClick}>
                 <TitleBlock>
