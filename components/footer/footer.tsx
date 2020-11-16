@@ -12,7 +12,6 @@ const FooterView = () => {
                     {/* <div className={styles['footer-element']}> */}
                     <FooterGroup>
                         <LocationTitle>Location</LocationTitle>
-                        <h5>18G Tupoleva Street</h5>
                         <h5>Kiev, Ukraine</h5>
                     </FooterGroup>
                     <FooterGroup>
