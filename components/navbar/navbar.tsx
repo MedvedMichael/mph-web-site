@@ -62,9 +62,9 @@ const Navbar = ({startLoading}) => {
             <NavLink href="/blog">Blog</NavLink>
             <NavLink href="/gallery">Gallery</NavLink>
             <ChangeThemeButton>
-              <a onClick={onChangeThemeButtonClick}>
+              <span onClick={onChangeThemeButtonClick}>
                 <i aria-hidden={true} className={`${!darkMode.value ? ' fas fa-sun' : ' fas fa-cloud-moon'}`} />
-              </a>
+              </span>
             </ChangeThemeButton>
           </NavLinks>
           <BurgerWrapper>
