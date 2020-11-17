@@ -6,10 +6,11 @@ import BurgerMenu from "./burger-menu";
 import CollapseMenu from "./collapse-menu";
 import { useContext, useState } from "react";
 import { DarkThemeContext } from "../Providers";
+import { useRouter } from "next/router";
 
 
 
-const Navbar = () => {
+const Navbar = ({startLoading}) => {
 
   const [navbarState, setNavbarState] = useState(false)
 
@@ -33,40 +34,38 @@ const Navbar = () => {
     localStorage.setItem('theme', !darkMode.value ? 'dark' : 'light')
   }
 
+  const NavLink = ({ children, href }) => {
+    const history = useRouter()
+    const isCurrent = history.pathname === href
+
+    const onLinkClick = () => {
+      if (!isCurrent) {
+        startLoading()
+        history.push(href)
+      }
+    }
+    return ( 
+      <li>
+        <span style={isCurrent ? {color: '#ffc71f'} : {}} onClick={onLinkClick}>{children}</span>
+      </li>)
+  }
+
   return (
     <>
-    {/* 'navbar navbar-expand-lg navbar-light bg-light' */}
       <NavBar style={barAnimation}>
         <FlexContainer>
           <NavbarTitle>
             <Link href='/'>MPH's web site</Link>
           </NavbarTitle>
           <NavLinks style={linkAnimation}>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/blog">Blog</Link>
-            </li>
-            <li>
-                <Link href="/gallery">Gallery</Link>
-            </li>
-
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/blog">Blog</NavLink>
+            <NavLink href="/gallery">Gallery</NavLink>
             <ChangeThemeButton>
               <a onClick={onChangeThemeButtonClick}>
                 <i aria-hidden={true} className={`${!darkMode.value ? ' fas fa-sun' : ' fas fa-cloud-moon'}`} />
               </a>
             </ChangeThemeButton>
-            {/* <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">Action</a>
-                <a className="dropdown-item" href="#">Another action</a>
-                <a className="dropdown-item" href="#">Something else here</a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">Separated link</a>
-              </div>
-            </li> */}
           </NavLinks>
           <BurgerWrapper>
             <BurgerMenu
@@ -91,7 +90,6 @@ const NavBar = styled(animated.nav)`
   width: 100%;
   top: 0;
   left: 0;
-  /* position: relative; */
   z-index: 8;
   font-size: 1.4rem;
   background-color: ${props => props.theme.bg.nav};
@@ -151,7 +149,7 @@ const NavLinks = styled(animated.ul)`
     padding-left: 0;
   }
   
-  & a {
+  & span {
     ${props => props.theme.text.primary};
     text-transform: uppercase;
     font-weight: 600;

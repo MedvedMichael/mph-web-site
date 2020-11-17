@@ -64,13 +64,13 @@
   height: 140px;
   top: 30px;
   left: 30px;
-  border-color: transparent #cc4545 transparent #cc4545;
+  border-color: transparent #ffc71f transparent #ffc71f;
   -webkit-animation: lds-double-ring_reverse 1.5s linear infinite;
   animation: lds-double-ring_reverse 1.5s linear infinite;
 }
 .lds-double-ring {
-  width: 77px !important;
-  height: 77px !important;
-  -webkit-transform: translate(-38.5px, -38.5px) scale(0.385) translate(38.5px, 38.5px);
-  transform: translate(-38.5px, -38.5px) scale(0.385) translate(38.5px, 38.5px);
+  width: 154px !important;
+  height: 154px !important;
+  /* -webkit-transform: translate(-77px, -77px) scale(0.77) translate(77px, 77px); */
+  transform: translate(-77px, -77px) scale(0.8) translate(77px, 77px);
 }

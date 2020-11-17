@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState, createContext } from "react";
 import styled from "styled-components";
 import Footer from "../footer/footer";
+import Loading from "../loading/loading";
 import Navbar from "../navbar/navbar";
 
 const AdminContext = createContext('')
@@ -17,6 +18,7 @@ interface MainLayout {
 
 const MainLayout = ({ children, title, Wrapper=React.Fragment, modal=null}) => {
     const [isAdmin, setIsAdmin] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const check = localStorage.getItem('isAdmin')
@@ -32,8 +34,9 @@ const MainLayout = ({ children, title, Wrapper=React.Fragment, modal=null}) => {
                 <title>{title}</title>
             </Head>
             <Main>
+            {isLoading ? <Loading /> : null}
                 <AdminContext.Provider value={isAdmin ? 'admin' : ''}>
-                    <Navbar />
+                    <Navbar startLoading={() => setIsLoading(true)}/>
                     {modal}
                     <Wrapper>
                     <MainContainer>
