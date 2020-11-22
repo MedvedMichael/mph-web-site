@@ -24,6 +24,7 @@ export const ParallaxView = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
     perspective: 300px;
+    scroll-behavior: smooth;
 `
 
 const ParallaxGroup = styled.div`

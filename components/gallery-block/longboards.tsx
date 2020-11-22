@@ -1,12 +1,20 @@
+import { useRef, forwardRef, useImperativeHandle } from "react"
 import styled from "styled-components"
+import ImageComponent from './image-component'
 
 interface LongboardsProps {
     onImageClick: (src: string) => void
 }
 
-export default function Longboards({ onImageClick }: LongboardsProps) {
+const Longboards = forwardRef(({ onImageClick }: LongboardsProps, ref: any) => {
+
+    const longboardRef = useRef()
+    useImperativeHandle(ref, () => ({
+        longboardRef
+    }))
+
     return (
-        <LongboardsBlock>
+        <LongboardsBlock ref={longboardRef} id="longboards">
             <Title>Longboards</Title>
             <LongboardsGrid>
                 <ImageComponent gridArea='main' onClick={onImageClick} src='/pictures/slide.jpg' />
@@ -21,21 +29,12 @@ export default function Longboards({ onImageClick }: LongboardsProps) {
             <Description>The feeling when you slide down the hills at high speed is beyond words...</Description>
         </LongboardsBlock>
     )
-}
+})
 
-interface ImageProps {
-    src: string
-    onClick: (src: string) => void,
-    gridArea: string
-}
+export default Longboards
 
-const ImageComponent = ({ src, onClick, gridArea }: ImageProps) => {
-    return (
-        <ImageContainer style={{gridArea}}>
-            <Image onClick={() => onClick(src)} src={src} />
-        </ImageContainer>
-    )
-}
+
+
 
 const LongboardsBlock = styled.div`
     /* margin: 0 auto; */
@@ -45,7 +44,8 @@ const LongboardsBlock = styled.div`
     padding-top: 0;
     position: relative;
     z-index: 6;
-    background: ${props => props.theme.bg.primary}
+    background: ${props => props.theme.bg.primary};
+    transition: ${props => props.theme.transition.bg};
 `
 
 const LongboardsGrid = styled.div`
@@ -62,22 +62,6 @@ const LongboardsGrid = styled.div`
     padding-bottom: 1rem;
 `
 
-const ImageContainer = styled.div`
-    position: relative;
-`
-
-const Image = styled.img`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: transform 200ms ease;
-
-    &:hover {
-        transform: scale(1.03)
-    }
-`
 
 const Description = styled.span`
     text-align: center;

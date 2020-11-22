@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import GalleryBlock from "../components/gallery-block/gallery-block";
 import MainLayout, { AdminContext } from "../components/main-layout/main-layout";
@@ -34,34 +34,69 @@ const GalleryPage: NextPage = () => {
         setModalUrl(src)
         setShowModal(true)
     }
+    const mainLayoutRef = useRef()
+
+    const galleryRef = useRef<{longboardsRef, tennisRef}>()
+    const {longboardsRef, tennisRef} = galleryRef.current ? galleryRef.current : {longboardsRef: null, tennisRef: null}
+
+    //@ts-ignore
+    const scrollTo: (x: number, y: number) => void = mainLayoutRef.current ? mainLayoutRef.current.scrollTo : null
+
+    const scrollLongboards = () =>  scrollTo ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetTop - 5*16) : null
+    const scrollProgramming = () => scrollTo ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetHeight + 9*16) : null
+    const scrollTennis = () => scrollTo ?  scrollTo(0, tennisRef.current.tennisRef.current.offsetTop - 5*16) : null
+
+    
+
 
     return (
-        <MainLayout Wrapper={ParallaxView} modal={modal} title='Gallery'> 
-            <Title>Gallery</Title>
-            <GalleryBlock onImageClick={onImageClick} closeModal={closeModal}/>
-        </MainLayout>
+        <>
+            <SelectMenu>
+                <SelectMenuButton onClick={scrollLongboards}>Longboards</SelectMenuButton>
+                <SelectMenuButton onClick={scrollProgramming}>Programming</SelectMenuButton>
+                <SelectMenuButton onClick={scrollTennis}>Table Tennis</SelectMenuButton>
+            </SelectMenu>
+            <MainLayout ref={mainLayoutRef} Wrapper={ParallaxView} modal={modal} title='Gallery'>
+
+                <Title>Gallery</Title>
+                <GalleryBlock ref={galleryRef} onImageClick={onImageClick} />
+            </MainLayout>
+        </>
     )
 }
 
 export default GalleryPage
 
-const Title = styled.h1`
-    margin: 1rem auto;
-    color: ${props => props.theme.text.primary};
-`
-
-const Main = styled.div`
+const SelectMenu = styled.div`
+    position: fixed;
+    top: 5.5rem;
+    right: 25px;
     display: flex;
-    flex-direction: column;
-    background: ${props => props.theme.bg.primary};
+    z-index: 9;
+    background: ${props => props.theme.bg.nav};
     transition: ${props => props.theme.transition.bg};
-    overflow-x: hidden;
-    overflow-y: hidden;
+    padding: .5rem;
+    border-radius: .5rem;
+
 `
 
-const MainContainer = styled.main`
-    padding-top: 5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+const SelectMenuButton = styled.button`
+    font-size: ${props => props.theme.fontSizes[2]};
+    margin: .25rem;
+    background: ${props => props.theme.bg.nav};
+    color: ${props => props.theme.text.primary};
+    border: none;
+    padding: .5rem;
+    border-radius: .5rem;
+    transition: ${props => props.theme.transition.bg};
+
+    &:hover {
+        background: ${props => props.theme.bg.inset};
+    }
+`
+
+
+const Title = styled.h1`
+    margin: 4.5rem auto 1rem auto;
+    color: ${props => props.theme.text.primary};
 `

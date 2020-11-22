@@ -1,6 +1,5 @@
-
 import Head from "next/head";
-import React from "react";
+import React, { useImperativeHandle, useRef, forwardRef, Fragment } from "react";
 import { useEffect, useState, createContext } from "react";
 import styled from "styled-components";
 import Footer from "../footer/footer";
@@ -9,51 +8,66 @@ import Navbar from "../navbar/navbar";
 
 const AdminContext = createContext('')
 
-interface MainLayout {
+interface MainLayoutProps {
     title: string,
-    children: JSX.Element[],
-    Wrapper?: JSX.Element,
+    children: JSX.Element | JSX.Element[],
+    Wrapper?: any,
     modal?: JSX.Element
 }
 
-const MainLayout = ({ children, title, Wrapper=React.Fragment, modal=null}) => {
+
+const MainLayout = forwardRef(({ children, title, Wrapper = Fragment, modal = null }: MainLayoutProps, ref) => {
     const [isAdmin, setIsAdmin] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
+    const wrapperRef = useRef<{scrollTo: ({left, top, behavior: string}) => void}>()
+
+    const scrollTo = (x: number, y: number) => {
+        wrapperRef.current.scrollTo({
+            left: x,
+            top: y,
+            behavior: "smooth"
+        })
+    }
+
     useEffect(() => {
         const check = localStorage.getItem('isAdmin')
-        if(check && check === process.env.SECRET_WORD){
+        if (check && check === process.env.SECRET_WORD) {
             setIsAdmin(true)
         }
     })
-    
+
+    useImperativeHandle(ref, () => ({
+        scrollTo
+    }))
+
+
     return (
         <>
             <Head>
-                {/* <script src="https://kit.fontawesome.com/fc94503bd8.js" crossOrigin="anonymous"></script> */}
                 <title>{title}</title>
             </Head>
             <Main>
-            {isLoading ? <Loading /> : null}
+                {isLoading ? <Loading /> : null}
                 <AdminContext.Provider value={isAdmin ? 'admin' : ''}>
-                    <Navbar startLoading={() => setIsLoading(true)}/>
+                    <Navbar startLoading={() => setIsLoading(true)} />
                     {modal}
-                    <Wrapper>
-                    <MainContainer>
-                        {children}
-                    </MainContainer>
-                    <Footer />
+                    {/*@ts-ignore*/}
+                    <Wrapper ref={Wrapper === Fragment ? null : wrapperRef}>
+                        <MainContainer>
+                            {children}
+                        </MainContainer>
+                        <Footer />
                     </Wrapper>
-                    
+
                 </AdminContext.Provider>
             </Main>
         </>)
-}
-
+})
 
 
 export default MainLayout
-export {AdminContext}
+export { AdminContext }
 
 const Main = styled.div`
     display: flex;

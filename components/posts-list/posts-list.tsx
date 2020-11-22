@@ -4,10 +4,21 @@ import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../main-layout/main-layout'
 import dynamic from 'next/dynamic'
 import PostView from './post-view'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { addDefaultPost } from '../../services/client/blog-service'
 interface PostsListProps {
     posts: Array<Post>
+}
+
+export const onAddPostHandler = async (history: NextRouter) => {
+    try {
+        const id = await addDefaultPost()
+        history.push(`/editor?id=${id}`)
+    }
+    catch (error) {
+        // console.log(history)
+        history.push(`/`)
+    }
 }
 
 const PostsList = ({ posts }: PostsListProps) => {
@@ -16,22 +27,11 @@ const PostsList = ({ posts }: PostsListProps) => {
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} isAdmin={isAdmin} />)
 
     const history = useRouter()
-    const onAddPostHandler = async () => {
-       
-        try {
-            const id = await addDefaultPost()
-            history.push(`/editor?id=${id}`)
-        }
-        catch (error) {
-            // console.log(history)
-            console.log(history.push(`/`))
-            console.log('CLICKED')
-        }
-    }
+    
 
     const addPostButton = isAdmin ? (
         <div>
-            <AddPostButton onClick={onAddPostHandler} className="std-button" type="button" value="Add post"></AddPostButton>
+            <AddPostButton onClick={() => onAddPostHandler(history)} className="std-button" type="button" value="Add post"></AddPostButton>
         </div>
     ) : null
     return (

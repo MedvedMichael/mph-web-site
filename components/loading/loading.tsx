@@ -16,7 +16,7 @@ export default function Loading() {
 
 const LoadingBg = styled.div`
     position: fixed;
-    z-index: 9;
+    z-index: 11;
     top: 0;
     left: 0;
     right: 0;

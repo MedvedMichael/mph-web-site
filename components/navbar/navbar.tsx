@@ -76,6 +76,7 @@ const Navbar = ({startLoading}) => {
         </FlexContainer>
       </NavBar>
       <CollapseMenu
+        startLoading={startLoading}
         navbarState={navbarState}
         handleNavbar={handleNavbar}
       />
@@ -90,7 +91,7 @@ const NavBar = styled(animated.nav)`
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 8;
+  z-index: 10;
   font-size: 1.4rem;
   background-color: ${props => props.theme.bg.nav};
   transition: ${props => props.theme.transition.bg};

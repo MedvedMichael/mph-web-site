@@ -1,11 +1,7 @@
 import PostsList from '../posts-list';
-import Spinner from '../../spinner/spinner'
-import { act, render, waitForElementToBeRemoved } from '@testing-library/react'
 import React from 'react'
 import { mount, shallow } from 'enzyme';
 import { AdminContext } from '../../main-layout/main-layout';
-import ShallowRenderer from 'react-test-renderer/shallow';
-import styled, { ThemeProvider } from 'styled-components';
 import Providers from '../../Providers';
 import { Post } from '../../../interfaces/blog-interfaces';
 import PostView from '../post-view';
@@ -88,20 +84,12 @@ test('should render posts', async () => {
 })
 
 test('should push to the history on add button click', () => {
-    const test = jest.fn()
-    const returnFromRouter = {
-        push: () => {}
-    }
-    const test2 = jest.spyOn(returnFromRouter, 'push')
-    useRouter.mockImplementation(() => returnFromRouter)
-    const wrapper = shallow(
+    const test = jest.spyOn(jest.requireActual('../posts-list.tsx'), 'onAddPostHandler')
+    const wrapper = mount(
         <TestComponent value='admin'>
             <PostsList posts={[]} />
         </TestComponent>)
-    
-    
-    console.log(wrapper.find(PostsList).dive().debug())
-    // wrapper.find('.std-button').last().simulate('click')
-    // console.log(test.mock.calls)
-    // expect(useRouter).toHaveBeenCalledTimes(1);
+    wrapper.find('.std-button').last().simulate('click')
+    console.log(test.mock.calls)
+    // expect(test.mock.calls.length).toEqual(1);
 })
