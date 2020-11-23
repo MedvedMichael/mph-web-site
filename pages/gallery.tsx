@@ -15,6 +15,7 @@ const GalleryPage: NextPage = () => {
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false)
     const [modalUrl, setModalUrl] = useState<string>('')
+    const [mounted, setMounted] = useState<boolean>(false)
 
     const closeModal = () => {
         setShowModal(false)
@@ -23,28 +24,32 @@ const GalleryPage: NextPage = () => {
 
     const modal = showModal ? <Modal src={modalUrl} closeModal={closeModal}/> : null
 
+    const mainLayoutRef = useRef()
+
     useEffect(() => {
         const check = localStorage.getItem('isAdmin')
         if(check && check === process.env.SECRET_WORD){
             setIsAdmin(true)
         }
-    })
+
+        if(mainLayoutRef.current) {
+            setMounted(true)
+        }
+    }, [mainLayoutRef.current])
 
     const onImageClick = (src: string) => {
         setModalUrl(src)
         setShowModal(true)
     }
-    const mainLayoutRef = useRef()
 
     const galleryRef = useRef<{longboardsRef, tennisRef}>()
     const {longboardsRef, tennisRef} = galleryRef.current ? galleryRef.current : {longboardsRef: null, tennisRef: null}
 
     //@ts-ignore
-    const scrollTo: (x: number, y: number) => void = mainLayoutRef.current ? mainLayoutRef.current.scrollTo : null
-
-    const scrollLongboards = () =>  scrollTo ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetTop - 5*16) : null
-    const scrollProgramming = () => scrollTo ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetHeight + 9*16) : null
-    const scrollTennis = () => scrollTo ?  scrollTo(0, tennisRef.current.tennisRef.current.offsetTop - 5*16) : null
+    const scrollTo: (x: number, y: number) => void = mounted ? mainLayoutRef.current.scrollTo : null
+    const scrollLongboards = () =>  mounted ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetTop - 5*16) : null
+    const scrollProgramming = () => mounted ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetHeight + 9*16) : null
+    const scrollTennis = () => mounted ?  scrollTo(0, tennisRef.current.tennisRef.current.offsetTop - 5*16) : null
 
     
 
