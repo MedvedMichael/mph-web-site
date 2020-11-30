@@ -6,7 +6,7 @@ import BurgerMenu from "./burger-menu";
 import CollapseMenu from "./collapse-menu";
 import { useContext, useState } from "react";
 import { DarkThemeContext } from "../Providers";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 
 
@@ -35,13 +35,12 @@ const Navbar = ({startLoading}) => {
   }
 
   const NavLink = ({ children, href }) => {
-    const history = useRouter()
-    const isCurrent = history.pathname === href
+    const router = useRouter()
+    const isCurrent = router.pathname === href
 
     const onLinkClick = () => {
       if (!isCurrent) {
-        startLoading()
-        history.push(href)
+        Router.push( {pathname: href} )
       }
     }
     return ( 
@@ -76,7 +75,6 @@ const Navbar = ({startLoading}) => {
         </FlexContainer>
       </NavBar>
       <CollapseMenu
-        startLoading={startLoading}
         navbarState={navbarState}
         handleNavbar={handleNavbar}
       />

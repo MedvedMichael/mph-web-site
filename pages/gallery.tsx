@@ -8,6 +8,7 @@ import Navbar from "../components/navbar/navbar";
 import { ParallaxView } from "../components/parallax/parallax";
 import Footer from "../components/footer/footer"
 import Modal from "../components/gallery-block/modal";
+import useWindowDimensions from "../components/hooks/useWindowDimensions";
 
 
 const GalleryPage: NextPage = () => {
@@ -24,7 +25,7 @@ const GalleryPage: NextPage = () => {
 
     const modal = showModal ? <Modal src={modalUrl} closeModal={closeModal}/> : null
 
-    const mainLayoutRef = useRef()
+    const mainLayoutRef = useRef<HTMLElement>()
 
     useEffect(() => {
         const check = localStorage.getItem('isAdmin')
@@ -42,7 +43,9 @@ const GalleryPage: NextPage = () => {
         setShowModal(true)
     }
 
-    const galleryRef = useRef<{longboardsRef, tennisRef}>()
+    type galleryRefType = { longboardsRef: React.MutableRefObject<{ longboardRef: React.MutableRefObject<HTMLElement> }>, tennisRef: React.MutableRefObject<{ tennisRef: React.MutableRefObject<HTMLElement> }> }
+
+    const galleryRef = useRef<galleryRefType>()
     const {longboardsRef, tennisRef} = galleryRef.current ? galleryRef.current : {longboardsRef: null, tennisRef: null}
 
     //@ts-ignore
@@ -51,12 +54,11 @@ const GalleryPage: NextPage = () => {
     const scrollProgramming = () => mounted ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetHeight + 9*16) : null
     const scrollTennis = () => mounted ?  scrollTo(0, tennisRef.current.tennisRef.current.offsetTop - 5*16) : null
 
-    
-
+    const {width} = useWindowDimensions()
 
     return (
         <>
-            <SelectMenu>
+            <SelectMenu style={width < 450 ? {flexDirection: 'column'} : {}}>
                 <SelectMenuButton onClick={scrollLongboards}>Longboards</SelectMenuButton>
                 <SelectMenuButton onClick={scrollProgramming}>Programming</SelectMenuButton>
                 <SelectMenuButton onClick={scrollTennis}>Table Tennis</SelectMenuButton>
@@ -78,17 +80,18 @@ const SelectMenu = styled.div`
     right: 25px;
     display: flex;
     z-index: 9;
-    background: ${props => props.theme.bg.nav};
+    background: ${props => props.theme.bg.nav}E6;
     transition: ${props => props.theme.transition.bg};
     padding: .5rem;
     border-radius: .5rem;
+    /* opacity:0; */
 
 `
 
 const SelectMenuButton = styled.button`
     font-size: ${props => props.theme.fontSizes[2]};
     margin: .25rem;
-    background: ${props => props.theme.bg.nav};
+    background: ${props => props.theme.bg.nav}E6;
     color: ${props => props.theme.text.primary};
     border: none;
     padding: .5rem;

@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 
 
-const CollapseMenu = ({ startLoading, navbarState, handleNavbar }: NavbarProps) => {
+const CollapseMenu = ({ navbarState, handleNavbar }: NavbarProps) => {
   const { open } = useSpring({ open: navbarState ? 0 : 1 });
 
   const darkMode = useContext(DarkThemeContext)
@@ -20,7 +20,6 @@ const CollapseMenu = ({ startLoading, navbarState, handleNavbar }: NavbarProps) 
 
     const onLinkClick = () => {
       if (!isCurrent) {
-        startLoading()
         history.push(href)
       }
     }

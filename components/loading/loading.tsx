@@ -3,14 +3,12 @@ import Spinner from '../spinner/spinner'
 
 export default function Loading() {
     return (
-        <LoadingBg>
             <LoadingView>
                 {/* <SpinnerContainer> */}
                     <Spinner />
                 {/* </SpinnerContainer> */}
                 <LoadingText>Loading...</LoadingText>
             </LoadingView>
-        </LoadingBg>
     )
 }
 
@@ -37,7 +35,7 @@ const LoadingView = styled.div`
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 10rem 2rem;
 `
 
 const SpinnerContainer = styled.div`

@@ -1,35 +1,61 @@
 import { NextPage } from "next"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Loading from "../components/loading/loading"
 import MainLayout from "../components/main-layout/main-layout"
 import PostsList from "../components/posts-list/posts-list"
-import {Post} from "../interfaces/blog-interfaces"
+import { Post } from "../interfaces/blog-interfaces"
 import { getAllPosts } from "../services/client/blog-service"
 
 interface BlogPageProps {
     posts?: Post[]
 }
 
-const BlogPage: NextPage<BlogPageProps> = (props) => {
+const BlogPage: NextPage<BlogPageProps> = ({ posts: serverPosts }) => {
+    const [posts, setPosts] = useState(serverPosts)
+
+    useEffect(() => {
+        if (!posts) {
+            getPosts().then(({ posts }) => {
+                setPosts(posts)
+            })
+        }
+    })
+
+    // if (!posts) {
+    //     return (
+    //         <MainLayout title={'Blog'}>
+    //             <Loading />
+    //         </MainLayout>
+    //     )
+    // }
 
     // const [posts, setPosts] = useState(props.posts)
     return (
         <>
             <MainLayout title={'Blog'}>
-                <PostsList posts={props.posts} />
+                <PostsList posts={posts} />
             </MainLayout>
         </>
     )
 }
 
+const getPosts = async () => {
+    const posts: Post[] = await getAllPosts()
+    return { posts }
+}
 
-BlogPage.getInitialProps = async () => {
+
+BlogPage.getInitialProps = async ({ req }) => {
+
     try {
-        const posts: Post[] = await getAllPosts()
-        return {posts}
+        if (!req)
+            throw new Error()
+
+
+        return getPosts()
     }
     catch (err) {
-        console.log(err)
-        return {posts:null}
+        return { posts: null }
     }
 }
 

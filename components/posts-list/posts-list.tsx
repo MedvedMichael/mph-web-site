@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import PostView from './post-view'
 import { NextRouter, useRouter } from 'next/router'
 import { addDefaultPost } from '../../services/client/blog-service'
+import Loading from '../loading/loading'
 interface PostsListProps {
     posts: Array<Post>
 }
@@ -22,6 +23,9 @@ export const onAddPostHandler = async (history: NextRouter) => {
 }
 
 const PostsList = ({ posts }: PostsListProps) => {
+
+    if(!posts) return <Loading />
+    console.log(posts)
     // const [posts, setPosts] = useState(startPosts)
     const isAdmin = useContext(AdminContext) === 'admin'
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} isAdmin={isAdmin} />)
