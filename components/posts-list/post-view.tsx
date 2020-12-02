@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import React, { useState, useEffect } from "react"
 import { RSISImage } from "react-simple-image-slider"
+import { animated, useSpring } from "react-spring"
 import styled from "styled-components"
 import {Post, Comment} from "../../interfaces/blog-interfaces"
 import Slider from "../slider/slider"
@@ -19,7 +20,7 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
     const [show, setShow] = useState(false)
     const [comments, setComments] = useState(com)
 
-    const cardText = show ? text : text.slice(0,100).replace('\n', ' ') + '...'
+    const cardText = show ? text : text.slice(0,100).replace('\n', ' ') + (text.length > 100 ? '...' : '')
     const addComment = (comment: Comment) => {
         console.log(comment)
         setComments([comment, ...comments])
@@ -47,8 +48,15 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
         </EditPostButton>
     ) : null
 
+    const animation = useSpring({
+        from: { opacity: 0, transform: 'translate3d(-4rem, 0, 0)' },
+        opacity: 1,
+        transform: 'translate3d(0, 0, 0)',
+        transition: 'opacity 300ms ease'
+    });
+
     return (
-        <PostViewCard className="post-view">
+        <PostViewCard style={animation} className="post-view">
             
             <div style={{padding: '.5rem'}} onClick={onCardClick}>
                 <TitleBlock>
@@ -62,23 +70,23 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
                 </CardText>
                 
             </div>
-            <CardComments style={show ? {} : {display: 'none'}}>
-            <Slider images={images}/>
+            <CardComments style={show ? {} : { display: 'none' }}>
+                <Slider images={images} />
                 <CommentsTitle>Comments</CommentsTitle>
-                <LeaveCommentBlock addComment={addComment} postId={id}/>
-                {comments ? comments.map((comment, index) => <CommentView key={'comment' + index } data={comment}/>) : 'There are no comments yet'}
+                <LeaveCommentBlock addComment={addComment} postId={id} />
+                {comments ? comments.map((comment, index) => <CommentView key={'comment' + index} data={comment} />) : 'There are no comments yet'}
             </CardComments>
         </PostViewCard>
     )
 }
 
-const PostViewCard = styled.div`
+const PostViewCard = styled(animated.div)`
     position: relative;
     display: flex;
     flex-direction: column;
     min-width: 0;
     background: ${props => props.theme.bg.inset};
-    transition: ${props => props.theme.transition.primary};
+    transition: ${props => props.theme.transition.bg};
   /*Linear gradient... */
     z-index:2;
     
@@ -134,6 +142,7 @@ const CardComments = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    transition: ${props => props.theme.transition.primary};
 `
 
 const CommentsTitle = styled.h3`

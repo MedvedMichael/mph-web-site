@@ -17,6 +17,7 @@ const TableTennis = forwardRef(({ onImageClick }: TableTennisProps, ref) => {
         <TableTennisBlock ref={tennisRef} id="table-tennis">
             <LeftBlock>
                 <Text>Well, my third lovely hobby is table tennis)</Text>
+                <Text>I used to play ping-pong from my childhood, and now I'm playing really good😎</Text>
                 <AnimatedRacket>
                     <Ball src='pictures/ball.png' />
                     <Racket src="pictures/table-racket.png" />

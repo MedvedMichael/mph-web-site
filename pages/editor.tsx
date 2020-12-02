@@ -98,7 +98,7 @@ const EditorPageView = styled.div`
 const TitleEditor = styled.input`
     font-size: ${props => props.theme.fontSizes[1]};
     padding: .5rem;
-    margin-top: 1rem;
+    margin: 2rem 2rem 0 2rem;
     background: ${props => props.theme.bg.secondary};
     color: ${props => props.theme.text.primary};
     font-size: ${props => props.theme.fontSizes[5]};
@@ -116,6 +116,8 @@ const TextEditor = styled.textarea`
     border-radius: .25rem;
     padding: .5rem;
     margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     
 `
 
@@ -129,6 +131,6 @@ const PostPictureButton = styled.label`
 `
 
 const SaveChangesButton = styled.div`
-    margin: 1rem 10vw;
+    margin: 1rem calc(15vw + 5rem);
     text-align: center;
 `

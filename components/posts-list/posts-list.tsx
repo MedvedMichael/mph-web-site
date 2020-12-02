@@ -25,7 +25,6 @@ export const onAddPostHandler = async (history: NextRouter) => {
 const PostsList = ({ posts }: PostsListProps) => {
 
     if(!posts) return <Loading />
-    console.log(posts)
     // const [posts, setPosts] = useState(startPosts)
     const isAdmin = useContext(AdminContext) === 'admin'
     const postsViews = posts.map(post => <PostView key={`post${post.id}`} post={post} isAdmin={isAdmin} />)
