@@ -32,6 +32,7 @@ export const deleteCommentsOfPost = async (id: string) => {
 
     const promises = allComments.map(comm => comments.doc(comm.id).delete())
     await Promise.all(promises)
+    return allComments.length
     // console.log(allComments)
 
 }
@@ -53,7 +54,6 @@ export const postComment = async (props: PostCommentProps) => {
     await comments.doc(uuid).set({...props, timestamp: admin.firestore.Timestamp.fromDate(new Date())})
     return uuid
 }
-export const getCommentById = (uuid: string) => comments.doc(uuid).get()
 
 export const getAllComments = async () => {
 

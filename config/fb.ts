@@ -24,6 +24,7 @@ if (admin.apps.length === 0) {
   });
 }
 
+export const toDate = (seconds: number, nanoseconds: number) => new admin.firestore.Timestamp(seconds, nanoseconds).toDate()
 
 // export type FirestoreCollectionReference = admin.firestore.CollectionReference;
 export const posts =  admin.firestore().collection("posts");

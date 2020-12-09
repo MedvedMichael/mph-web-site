@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import FormData from 'form-data' 
 import fetch from 'node-fetch'
 
-interface PostImageRequest extends NextApiRequest {
+export interface PostImageRequest extends NextApiRequest {
     query: {
         secret: string
     },
@@ -27,12 +27,11 @@ export default async function postImage (req: PostImageRequest, res: NextApiResp
                 headers: form.getHeaders(),
                 body: form,
             }).then(res => res.json()).then(res => res.data.display_url)
-            
             res.status(200).send({display_url})
         }
-        else return res.status(404).send(null)
+        else throw new Error()
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send(null)
     }
 }

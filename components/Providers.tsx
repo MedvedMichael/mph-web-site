@@ -22,13 +22,12 @@ const Providers = ({ children }) => {
 
     
 
-    const body =
-    //@ts-ignore
+    const body = (
     <DarkThemeContext.Provider value={darkMode}>
         <ThemeProvider theme={theme}>
             <>{children}</>
         </ThemeProvider>
-    </DarkThemeContext.Provider>
+    </DarkThemeContext.Provider>)
     
     if (!mounted) {
         return <div style={{ visibility: 'hidden' }}>{body}</div>

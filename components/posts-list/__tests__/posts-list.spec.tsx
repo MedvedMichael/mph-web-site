@@ -83,13 +83,13 @@ test('should render posts', async () => {
     expect(wrapper.find(PostsList).dive().find(PostView).length).toBe(posts.length)
 })
 
-test('should push to the history on add button click', () => {
-    const test = jest.spyOn(jest.requireActual('../posts-list.tsx'), 'onAddPostHandler')
-    const wrapper = mount(
-        <TestComponent value='admin'>
-            <PostsList posts={[]} />
-        </TestComponent>)
-    wrapper.find('.std-button').last().simulate('click')
-    console.log(test.mock.calls)
-    // expect(test.mock.calls.length).toEqual(1);
-})
+// test('should push to the history on add button click', () => {
+//     const test = jest.spyOn(jest.requireActual('../posts-list.tsx'), 'onAddPostHandler')
+//     const wrapper = mount(
+//         <TestComponent value='admin'>
+//             <PostsList posts={[]} />
+//         </TestComponent>)
+//     wrapper.find('.std-button').last().simulate('click')
+//     console.log(test.mock.calls)
+//     // expect(test.mock.calls.length).toEqual(1);
+// })
