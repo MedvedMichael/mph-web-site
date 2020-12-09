@@ -13,6 +13,29 @@ export const patchPost = async (id: string, props: {text: string, title: string,
     return await posts.doc(id).update(props)
 }
 
+export const deletePost = async (id: string) => {
+    return await posts.doc(id).delete()
+}
+
+export const deleteCommentsOfPost = async (id: string) => {
+    const res = await comments.get()
+    res.forEach(post => post.data())
+    const res2 = res.docs.map(doc => doc.data())
+    const allComments = []
+
+    res2.forEach((doc, index) => {
+        if(doc.postId === id) {
+            allComments.push({...doc, id: res.docs[index].id})
+        }
+    })
+
+
+    const promises = allComments.map(comm => comments.doc(comm.id).delete())
+    await Promise.all(promises)
+    // console.log(allComments)
+
+}
+
 export const addNewPost = async () => {
     const uuid = uuidv4()
     await posts.doc(uuid).set({title: 'Title', text: 'Text', images: [], timestamp: admin.firestore.Timestamp.fromDate(new Date())})

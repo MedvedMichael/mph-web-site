@@ -6,7 +6,7 @@ import MainLayout from "../components/main-layout/main-layout"
 import { Post } from "../interfaces/blog-interfaces"
 import hostImage from "../services/client/image-hosting"
 import Slider from "../components/slider/slider"
-import { getPostById, patchPost } from "../services/client/blog-service"
+import { deletePost, getPostById, patchPost } from "../services/client/blog-service"
 import Spinner from "../components/spinner/spinner"
 
 
@@ -22,25 +22,39 @@ const EditorPage: NextPage = ({ post, id }: EditorPageProps) => {
     const [title, setTitle] = useState(post.title)
     const [images, setImages] = useState(post.images ? post.images : [])
     const [loading, setLoading] = useState(false)
-    const history = useRouter()
+    const router = useRouter()
 
     useEffect(() => {
         if (!post || localStorage.getItem('isAdmin') !== process.env.SECRET_WORD) {
-            history.push('/404')
+            router.push('/404')
         }
     })
 
     const postPictureHandler = async ({ target }) => {
         setLoading(true)
-        const url = await target.files[0].arrayBuffer().then(buffer => hostImage(Buffer.from(buffer)))
+        const url = await target.files[0].arrayBuffer().then(buffer => hostImage(Buffer.from(buffer), localStorage.getItem('isAdmin')))
         setImages([...images, url])
         setLoading(false)
     }
 
     const saveChangesHandler = async () => {
-        const res = await patchPost({ id, text, title, images })
+        const secret = localStorage.getItem('isAdmin')
+        const res = await patchPost({ id, text, title, images, secret })
+        console.log(res.body)
         if (res.ok)
-            history.push('/blog')
+            router.push('/blog')
+    }
+
+    const removePost = async () => {
+        try {
+            const secret = localStorage.getItem('isAdmin')
+            await deletePost(id, secret)
+            router.push('/blog')
+        }
+        catch (error) {
+            router.push('/')
+        }
+
     }
 
 
@@ -59,7 +73,10 @@ const EditorPage: NextPage = ({ post, id }: EditorPageProps) => {
                 </PostPictureButton>
 
                 </div>
+                <ButtonsGroup>
                 <SaveChangesButton className="std-button" onClick={saveChangesHandler}>Save</SaveChangesButton>
+                <DeletePostButton className="std-button" onClick={removePost}>Delete</DeletePostButton>
+                </ButtonsGroup>
             </EditorPageView>
         </MainLayout>
     )
@@ -82,6 +99,13 @@ EditorPage.getInitialProps = async ({ query }: EditorContext) => {
 }
 
 export default EditorPage
+
+const ButtonsGroup = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin: 0 auto; */
+`
 
 const Title = styled.h2`
     display: block;
@@ -131,6 +155,17 @@ const PostPictureButton = styled.label`
 `
 
 const SaveChangesButton = styled.div`
-    margin: 1rem calc(15vw + 5rem);
+    /* margin: 1rem calc(15vw + 5rem); */
+    margin: .5rem;
     text-align: center;
+    flex-grow: 1;
+    max-width: 20rem;
+`
+
+const DeletePostButton = styled.div`
+    /* margin: 1rem calc(15vw + 5rem); */
+    margin: .5rem;
+    max-width: 20rem;
+    text-align: center;
+    flex-grow: 1;
 `

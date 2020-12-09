@@ -11,6 +11,7 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
             const res = doc.data()
             return { ...res, id: doc.id, comments: [] } as Post
         })
+        console.log(posts)
 
         const commQuery = await getAllComments()
         commQuery.forEach(doc => {
@@ -22,6 +23,7 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(200).send(posts)
     }
     catch (error) {
+        console.log(error)
         res.status(500).send([])
     }
 

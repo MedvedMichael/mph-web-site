@@ -16,6 +16,7 @@ module.exports = {
         "auth_provider_x509_cert_url": process.env["auth_provider_x509_cert_url"],
         "client_x509_cert_url": process.env["client_x509_cert_url"],
         IMAGE_API_KEY: process.env.IMAGE_API_KEY,
-        SECRET_WORD: process.env.SECRET_WORD
+        SECRET_WORD: process.env.SECRET_WORD,
+        IMAGE_HOSTING_KEY: process.env.IMAGE_HOSTING_KEY
     }
 }

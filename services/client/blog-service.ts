@@ -6,9 +6,10 @@ interface AddCommentProps {
     postId: string
 }
 
-export const addDefaultPost: () => Promise<string> = async () => 
+export const addDefaultPost = async (secret: string): Promise<string> => 
     fetch(`${process.env.API_URL}/api/post`, {
         method: 'POST',
+        body: JSON.stringify({secret})
     })
     .then(res => res.json())
     .then(res => res.id)
@@ -34,12 +35,19 @@ interface PatchPostProps {
         id: string,
         title: string,
         text: string,
-        images: string[]
+        images: string[],
+        secret: string
 }
 
-export const patchPost = async ({id, text, title, images}: PatchPostProps) => 
-    fetch(`${process.env.API_URL}/api/post/` + id, {
+export const patchPost = async ({id, text, title, images, secret}: PatchPostProps) => 
+    fetch(`${process.env.API_URL}/api/post/${id}?secret=${secret}`, {
         method: 'PATCH',
         mode: 'cors',
-        body: JSON.stringify({ title, text, images })
+        body: JSON.stringify({ title, text, images})
     })
+
+
+export const deletePost = async (id: string, secret: string) => fetch(`${process.env.API_URL}/api/post/${id}?secret=${secret}`, {
+    method: 'DELETE',
+    mode: 'cors'
+}) 

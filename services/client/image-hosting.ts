@@ -1,17 +1,12 @@
-const IMAGE_API_URL = 'https://api.imgbb.com/1/upload'
+const hostImage = async (image: Buffer, secret: string) => {
 
-const hostImage = async (image: Buffer) => {
-    const url = new URL(IMAGE_API_URL)
-    url.searchParams.set('key', '17a02503085287a21b0e79583f4c5638')
-
-    const form = new FormData()
-    form.append('image', image.toString('base64'))
-
-    return fetch(url.toString(), {
+    const res = await fetch(`${process.env.API_URL}/api/image?secret=${secret}`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
-        body: form
-    }).then(res => res.json()).then(res => res.data.display_url)
+        body: JSON.stringify({image: image.toString('base64')})
+    }).then(res => res.json())
+
+    return res.display_url
 }
 
 export default hostImage
