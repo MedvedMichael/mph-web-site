@@ -13,7 +13,8 @@ interface PostsListProps {
 
 export const onAddPostHandler = async (history: NextRouter) => {
     try {
-        const id = await addDefaultPost()
+        const secret = localStorage.getItem('isAdmin')
+        const id = await addDefaultPost(secret)
         history.push(`/editor?id=${id}`)
     }
     catch (error) {
