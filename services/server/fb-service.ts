@@ -55,6 +55,8 @@ export const postComment = async (props: PostCommentProps) => {
     return uuid
 }
 
+export const getCommentById = (uuid: string) => comments.doc(uuid).get()
+
 export const getAllComments = async () => {
 
     const res = await comments.get()
