@@ -18,5 +18,18 @@ module.exports = {
         IMAGE_API_KEY: process.env.IMAGE_API_KEY,
         SECRET_WORD: process.env.SECRET_WORD,
         IMAGE_HOSTING_KEY: process.env.IMAGE_HOSTING_KEY
+    }, 
+    webpack: (config, {
+        isServer, webpack
+    }) => {
+        // Fixes npm packages that depend on `fs` module
+        if (!isServer) {
+            config.node = {
+                fs: 'empty'
+            }
+        }
+        config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+
+        return config
     }
 }

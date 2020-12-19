@@ -25,7 +25,7 @@ const Longboards = forwardRef(({ onImageClick }: LongboardsProps, ref: any) => {
                 <ImageComponent gridArea='down-center-left' onClick={onImageClick} src='/pictures/longboard-5.jpg' />
                 <ImageComponent gridArea='left-down' onClick={onImageClick} src='/pictures/longboard-6.jpg' />
             </LongboardsGrid>
-            <Description>Longboards are my favorite hobby (after programming, of cource :)))</Description>
+            <Description>Longboards are my favorite hobby (after programming, of course :)))</Description>
             <Description>The feeling when you slide down the hills at high speed is beyond words...</Description>
         </LongboardsBlock>
     )

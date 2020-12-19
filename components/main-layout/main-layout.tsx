@@ -50,7 +50,7 @@ const MainLayout = forwardRef(({ children, title, Wrapper = Fragment, modal = nu
             <Main>
                 {isLoading ? <Loading /> : null}
                 <AdminContext.Provider value={isAdmin ? 'admin' : ''}>
-                    <Navbar startLoading={() => setIsLoading(true)} />
+                    <Navbar />
                     {modal}
                     {/*@ts-ignore*/}
                     <Wrapper ref={Wrapper === Fragment ? null : wrapperRef}>
