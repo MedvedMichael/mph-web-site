@@ -5,6 +5,7 @@ import { AdminContext } from '../../main-layout/main-layout';
 import Providers from '../../Providers';
 import { Post } from '../../../interfaces/blog-interfaces';
 import PostView from '../post-view';
+import toJson from 'enzyme-to-json';
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
@@ -37,8 +38,8 @@ const TestComponent = ({children, value}) => (
     </AdminContext.Provider>)
 
 test('should render without crashing', () => {
-    const wrapper = shallow(<PostsList posts={[]} />);
-    // expect(wrapper.find('h1')).toHaveLength(1);
+    const res = shallow(<PostsList posts={[]} />);
+    expect(toJson(res)).toMatchSnapshot()
 });
 
 test('should render add button for admin', () => {

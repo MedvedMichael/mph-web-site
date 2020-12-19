@@ -19,7 +19,7 @@ export default function ProjectsSlider({ projects }: ProjectsSliderProps): JSX.E
 
 
 
-    const dots = Array.from({ length: projects.length }, (v, index) => <Dot key={`dot${index}`} selected={index === selected} onClick={() => onDotClick(index)} />)
+    const dots = Array.from({ length: projects.length }, (v, index) => <DotView key={`dot${index}`} style={index === selected ? { background: '#3160d6' } : {}} onClick={() => onDotClick(index)} />)
     return (
         <div>
             <ProjectsSliderView>
@@ -32,9 +32,8 @@ export default function ProjectsSlider({ projects }: ProjectsSliderProps): JSX.E
     )
 }
 
-const Dot = ({ selected, onClick }) => <DotView style={selected ? { background: '#3160d6' } : {}} onClick={onClick} />
 
-const DotView = styled.div`
+export const DotView = styled.div`
     
     border-radius: 50%;
     width: 18px;

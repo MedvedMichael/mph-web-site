@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page should render 1`] = `
+<TestElement
+  title="404"
+>
+  <PageNotFound />
+</TestElement>
+`;
+
+exports[`should render 1`] = `
+<styled.div>
+  <styled.img
+    src="/pictures/404.png"
+  />
+  <styled.h1>
+    Don't worry, there's no page)))
+  </styled.h1>
+  <styled.h1>
+    <Link
+      href="/"
+    >
+      Go to Home page
+    </Link>
+  </styled.h1>
+</styled.div>
+`;

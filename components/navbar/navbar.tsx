@@ -10,7 +10,7 @@ import Router, { useRouter } from "next/router";
 
 
 
-const Navbar = ({startLoading}) => {
+const Navbar = () => {
 
   const [navbarState, setNavbarState] = useState(false)
 
@@ -34,20 +34,7 @@ const Navbar = ({startLoading}) => {
     localStorage.setItem('theme', !darkMode.value ? 'dark' : 'light')
   }
 
-  const NavLink = ({ children, href }) => {
-    const router = useRouter()
-    const isCurrent = router.pathname === href
-
-    const onLinkClick = () => {
-      if (!isCurrent) {
-        Router.push( {pathname: href} )
-      }
-    }
-    return ( 
-      <li>
-        <span style={isCurrent ? {color: '#ffc71f'} : {}} onClick={onLinkClick}>{children}</span>
-      </li>)
-  }
+  
 
   return (
     <>
@@ -83,6 +70,21 @@ const Navbar = ({startLoading}) => {
 }
 
 export default Navbar
+
+const NavLink = ({ children, href }) => {
+  const router = useRouter()
+  const isCurrent = router.pathname === href
+
+  const onLinkClick = () => {
+    if (!isCurrent) {
+      Router.push( {pathname: href} )
+    }
+  }
+  return ( 
+    <li>
+      <span style={isCurrent ? {color: '#ffc71f'} : {}} onClick={onLinkClick}>{children}</span>
+    </li>)
+}
 
 const NavBar = styled(animated.nav)`
   position: fixed;

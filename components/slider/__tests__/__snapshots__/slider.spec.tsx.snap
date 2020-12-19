@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should not render without images 1`] = `""`;
+
+exports[`should render 1`] = `
+<styled.div
+  style={Object {}}
+>
+  <ForwardRef(LoadableComponent)
+    height="100%"
+    images={
+      Array [
+        Object {
+          "url": "some_url",
+        },
+      ]
+    }
+    width="100%"
+  />
+</styled.div>
+`;

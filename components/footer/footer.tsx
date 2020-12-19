@@ -46,7 +46,7 @@ const FooterView = () => {
 
 export default FooterView
 
-const Footer = styled.footer`
+export const Footer = styled.footer`
     display: flex;
     flex-direction: row;
     background: ${props => props.theme.bg.nav};
@@ -78,7 +78,7 @@ const ContactMeGroup = styled.div`
 
 `
 
-const FooterGroup = styled.div`
+export const FooterGroup = styled.div`
     position: relative;
     width: 100%;
     padding-right: 15px;

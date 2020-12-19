@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render 1`] = `
+<div>
+  <styled.div>
+    <ProjectCard
+      image="/pictures/web-storage.png"
+      key="card0"
+      selected={true}
+      src={
+        Array [
+          "https://github.com/MedvedMichael/web-storage-client",
+          "https://github.com/MedvedMichael/web-storage",
+        ]
+      }
+      text="Full-stack project with full MERN stack of technologies!
+It can be customized for storing lots of videos, photos; its structure is suitable for the majority of situations. Moreover, after the completion of the project I successfully deployed and configured all of its parts to remote server!!!😎😎😎"
+      title="Web Storage"
+    />
+  </styled.div>
+  <styled.div>
+    <styled.div
+      key="dot0"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#3160d6",
+        }
+      }
+    />
+    <styled.div
+      key="dot1"
+      onClick={[Function]}
+      style={Object {}}
+    />
+    <styled.div
+      key="dot2"
+      onClick={[Function]}
+      style={Object {}}
+    />
+  </styled.div>
+</div>
+`;

@@ -4,7 +4,7 @@ import NavbarProps from '../../interfaces/NavbarProps';
 
 
 
-const Burgermenu = ({navbarState, handleNavbar}: NavbarProps) => {
+const BurgerMenu = ({navbarState, handleNavbar}: NavbarProps) => {
   return (
     <Wrapper onClick={handleNavbar}>
       <div className={navbarState ? "open" : "" }>
@@ -16,7 +16,7 @@ const Burgermenu = ({navbarState, handleNavbar}: NavbarProps) => {
   );
 }
 
-export default Burgermenu;
+export default BurgerMenu;
 
 const Wrapper = styled.div`
   position: relative;

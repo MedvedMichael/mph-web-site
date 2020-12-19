@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be 1`] = `
+Array [
+  Object {
+    "image": "/pictures/web-storage.png",
+    "src": Array [
+      "https://github.com/MedvedMichael/web-storage-client",
+      "https://github.com/MedvedMichael/web-storage",
+    ],
+    "text": "Full-stack project with full MERN stack of technologies!
+It can be customized for storing lots of videos, photos; its structure is suitable for the majority of situations. Moreover, after the completion of the project I successfully deployed and configured all of its parts to remote server!!!😎😎😎",
+    "title": "Web Storage",
+  },
+  Object {
+    "image": "/pictures/flash-cards.png",
+    "src": Array [
+      "https://github.com/MedvedMichael/flash-cards-bot",
+    ],
+    "text": "Telegram Bot that is created for people who want to learn English or other languages!
+It's based on the famous method of using flash cards - cards bearing information on both sides, which is intended to be used as an aid in memorization",
+    "title": "Flash Cards Bot",
+  },
+  Object {
+    "image": "/pictures/nextjs.jpg",
+    "src": Array [
+      "https://github.com/MedvedMichael/mph-web-site",
+    ],
+    "text": "Yeah, this site is completely created by me!)))
+I used Next.js as a framework for frontend using SSR (Server-Side Rendering) and Firebase from Google to store my data.
+Also I didn't use any CSS-libraries like Bootstrap on MaterialUI, and I implemented the dark-mode feature using styled components (that was my dream😉)!!!",
+    "title": "My web-site",
+  },
+]
+`;

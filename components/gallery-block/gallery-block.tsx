@@ -28,11 +28,6 @@ const GalleryBlock = forwardRef(({ onImageClick }: GalleryBlockProps, ref) => {
     const ref1 = useRef()
     return (
         <GalleryBlockView ref={ref1}>
-            {/* <SelectMenu>
-                <button onClick={scrollLongboards}>Longboards</button>
-                <button onClick={scrollProgramming}>Programming</button>
-                <button onClick={scrollTennis}>Table Tennis</button>
-            </SelectMenu> */}
             <Longboards ref={longboardsRef} onImageClick={onImageClick} />
             <Programming ref={programmingRef}/>
             <TableTennis ref={tennisRef} onImageClick={onImageClick} />

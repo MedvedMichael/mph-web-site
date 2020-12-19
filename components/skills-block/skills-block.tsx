@@ -3,10 +3,7 @@ import { useState } from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import { VisibilityContainer } from '../visibility-container/visibility-container';
 
-const SkillsBlock = ({ }) => {
-
-
-    return (
+const SkillsBlock = () => (
         <SkillsBlockContainer >
             <Title>
                 <VisibilityContainer from={{ transform: 'translate3d(-1rem, 0, 0)', opacity: 0 }} to={{ transform: 'translate3d(0, 0, 0)', opacity: 1 }}>
@@ -51,8 +48,7 @@ const SkillsBlock = ({ }) => {
                 </VisibilityContainer>
             </Title>
         </SkillsBlockContainer>
-    );
-};
+)
 
 export default SkillsBlock
 
@@ -61,7 +57,7 @@ interface TechCardProps {
     title: string
 }
 
-const TechCard = ({ path, title }: TechCardProps) => {
+export const TechCard = ({ path, title }: TechCardProps) => {
 
     const [inverted, setInverted] = useState(false)
 
@@ -84,7 +80,7 @@ const TechCard = ({ path, title }: TechCardProps) => {
 
 
 
-const SkillsBlockContainer = styled.div`
+export const SkillsBlockContainer = styled.div`
     background: ${props => props.theme.bg.inset};
     transition: ${props => props.theme.transition.bg};
     display: flex;

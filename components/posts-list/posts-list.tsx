@@ -11,17 +11,7 @@ interface PostsListProps {
     posts: Array<Post>
 }
 
-export const onAddPostHandler = async (history: NextRouter) => {
-    try {
-        const secret = localStorage.getItem('isAdmin')
-        const id = await addDefaultPost(secret)
-        history.push(`/editor?id=${id}`)
-    }
-    catch (error) {
-        // console.log(history)
-        history.push(`/`)
-    }
-}
+export 
 
 const PostsList = ({ posts }: PostsListProps) => {
 
@@ -32,10 +22,21 @@ const PostsList = ({ posts }: PostsListProps) => {
 
     const history = useRouter()
     
+    const onAddPostHandler = async () => {
+        try {
+            const secret = localStorage.getItem('isAdmin')
+            const id = await addDefaultPost(secret)
+            history.push(`/editor?id=${id}`)
+        }
+        catch (error) {
+            // console.log(history)
+            history.push(`/`)
+        }
+    }
 
     const addPostButton = isAdmin ? (
         <div>
-            <AddPostButton onClick={() => onAddPostHandler(history)} className="std-button" type="button" value="Add post"></AddPostButton>
+            <AddPostButton onClick={() => onAddPostHandler()} className="std-button" type="button" value="Add post"></AddPostButton>
         </div>
     ) : null
     return (

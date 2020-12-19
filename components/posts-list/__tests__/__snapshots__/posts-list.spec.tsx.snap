@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render without crashing 1`] = `
+<styled.div>
+  <styled.h1>
+    Posts
+  </styled.h1>
+  <styled.div />
+  <styled.h3
+    id="no-posts-message"
+  >
+    There are no posts yet :(
+  </styled.h3>
+</styled.div>
+`;

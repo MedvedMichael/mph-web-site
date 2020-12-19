@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render 1`] = `
+<styled.footer>
+  <styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.h3>
+          Location
+        </styled.h3>
+        <h5>
+          Kiev, Ukraine
+        </h5>
+      </styled.div>
+      <styled.div>
+        <h3>
+          Contact me
+        </h3>
+        <styled.div>
+          <a
+            href="https://t.me/medved2001"
+            target="_blank"
+          >
+            <styled.i
+              aria-hidden={true}
+              className="fab fa-telegram-plane"
+            />
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=100006384134639"
+            target="_blank"
+          >
+            <styled.i
+              aria-hidden={true}
+              className="fab fa-facebook"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/___mph___/"
+            target="_blank"
+          >
+            <styled.i
+              aria-hidden={true}
+              className="fab fa-instagram"
+            />
+          </a>
+          <a
+            href="mailto:misha.medvedev2001@gmail.com"
+            target="_blank"
+          >
+            <styled.i
+              aria-hidden={true}
+              className="fas fa-envelope-open-text"
+            />
+          </a>
+        </styled.div>
+      </styled.div>
+      <styled.div>
+        <h3>
+          Source
+        </h3>
+        <a
+          href="https://github.com/MedvedMichael/mph-web-site"
+          target="_blank"
+        >
+          <styled.i
+            aria-hidden={true}
+            className="fab fa-github"
+          />
+        </a>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+</styled.footer>
+`;

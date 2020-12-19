@@ -2,24 +2,25 @@ import Link from "next/link";
 import styled from "styled-components";
 import MainLayout from "../components/main-layout/main-layout";
 
-export default function PageNotFound() {
+export default function PageNotFoundPage() {
 
     return (
         <MainLayout title="404">
-            <PageNotFoundView>
-                <Picture src="/pictures/404.png">
-
-                </Picture>
-                <Subtitle>
-                    Don't worry, there's no page)))
-                </Subtitle>
-                <Subtitle>
-                    <Link href="/">Go to Home page</Link>
-                </Subtitle>
-            </PageNotFoundView>
+            <PageNotFound/>
         </MainLayout>
     )
 }
+
+export const PageNotFound = () =>
+    <PageNotFoundView>
+        <Picture src="/pictures/404.png"/>
+        <Subtitle>
+            Don't worry, there's no page)))
+        </Subtitle>
+        <Subtitle>
+            <Link href="/">Go to Home page</Link>
+        </Subtitle>
+    </PageNotFoundView>
 
 const PageNotFoundView = styled.div`
     display: flex;

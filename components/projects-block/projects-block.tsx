@@ -18,7 +18,7 @@ export default function ProjectsBlock(): JSX.Element {
     )
 }
 
-const ProjectsBlockView = styled.div`
+export const ProjectsBlockView = styled.div`
     display: flex;
     flex-direction: column;
     color: ${props => props.theme.text.primary};

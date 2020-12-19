@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render 1`] = `
+<styled.div>
+  <ForwardRef
+    onImageClick={[Function]}
+  />
+  <ForwardRef />
+  <ForwardRef
+    onImageClick={[Function]}
+  />
+</styled.div>
+`;
