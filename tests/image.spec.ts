@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
-import postImage, { PostImageRequest } from '../image'
-import { TestResponse } from '../post/__tests__/[id].spec';
+import postImage, { PostImageRequest } from '../pages/api/image'
+import { TestResponse } from './post.[id].spec';
 import fetch from 'node-fetch'
 
 process.env.IMAGE_HOSTING_KEY = '12345678'

@@ -5,11 +5,11 @@ module.exports = {
         '!**/node_modules/**',
         '!**/.next/**'
     ],
-    setupFilesAfterEnv: ['<rootDir>/tests/setupTests.js'],
+    setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
     transform: {
         '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
-        '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
+        '^.+\\.css$': '<rootDir>/config/jest/cssTransform.ts',
     },
     transformIgnorePatterns: [
         '/node_modules/',

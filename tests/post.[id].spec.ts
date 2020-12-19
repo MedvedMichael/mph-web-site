@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import managePost, { GetPostQuery } from '../[id]'
-import { deleteCommentsOfPost, deletePost, getPostById, patchPost } from "../../../../services/server/fb-service"
+import managePost, { GetPostQuery } from '../pages/api/post/[id]'
+import { deleteCommentsOfPost, deletePost, getPostById, patchPost } from "../services/server/fb-service"
 let testPost = { text: '', title: '' }
 
 
 
-jest.mock('../../../../services/server/fb-service.ts', () => ({
+jest.mock('../services/server/fb-service.ts', () => ({
     deleteCommentsOfPost: jest.fn((id: string) => Promise.resolve()),
     deletePost: jest.fn((id: string) => Promise.resolve()),
     getPostById: jest.fn((id: string) => Promise.resolve({

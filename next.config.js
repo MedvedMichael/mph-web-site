@@ -29,7 +29,10 @@ module.exports = {
             }
         }
         config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+        // config.plugins.push(new webpack.IgnorePlugin())
+        config.plugins.push(new webpack.IgnorePlugin(/pages.*\/spec.*/));
 
         return config
-    }
+    },
+    excludeFile: (str) => /\*.{spec,test}.js/.test(str)
 }

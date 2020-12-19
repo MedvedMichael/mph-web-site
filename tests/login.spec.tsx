@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import LoginPage from '../login'
+import LoginPage from '../pages/login'
 
 test('should render', () => {
     const res = shallow(<LoginPage />)

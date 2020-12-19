@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme'
-import PageNotFoundPage, {PageNotFound} from '../404'
+import PageNotFoundPage, {PageNotFound} from '../pages/404'
 import toJson from 'enzyme-to-json';
 import renderer from 'react-test-renderer'
-import {lightTheme} from '../../components/themes'
+import {lightTheme} from '../components/themes'
 import {ThemeProvider} from 'styled-components'
 import 'jest-styled-components'
 import React from 'react';
@@ -15,7 +15,7 @@ test('should render', () => {
 
 const TestElement = ({children}) => <div>{children}</div>
 
-jest.mock('../../components/main-layout/main-layout.tsx', () => TestElement)
+jest.mock('../components/main-layout/main-layout.tsx', () => TestElement)
 
 test ('page should render', () => {
     const res = shallow(<PageNotFoundPage />)
