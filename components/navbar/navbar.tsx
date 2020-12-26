@@ -41,7 +41,7 @@ const Navbar = () => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <NavbarTitle>
-            <Link href='/'>MPH's web site</Link>
+            <Link href='/'>MPH's website</Link>
           </NavbarTitle>
           <NavLinks style={linkAnimation}>
             <NavLink href="/">Home</NavLink>
