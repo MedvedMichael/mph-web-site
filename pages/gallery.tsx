@@ -48,7 +48,6 @@ const GalleryPage: NextPage = () => {
     const galleryRef = useRef<galleryRefType>()
     const {longboardsRef, tennisRef} = galleryRef.current ? galleryRef.current : {longboardsRef: null, tennisRef: null}
 
-    //@ts-ignore
     const scrollTo: (x: number, y: number) => void = mounted ? mainLayoutRef.current.scrollTo : null
     const scrollLongboards = () =>  mounted ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetTop - 5*16) : null
     const scrollProgramming = () => mounted ? scrollTo(0, longboardsRef.current.longboardRef.current.offsetHeight + 9*16) : null
@@ -58,7 +57,7 @@ const GalleryPage: NextPage = () => {
 
     return (
         <>
-            <SelectMenu style={width < 450 ? {flexDirection: 'column'} : {}}>
+            <SelectMenu style={width < 450 ? {right: 8, left: 8, justifyContent: 'center', flexWrap: 'wrap'} : {}}>
                 <SelectMenuButton onClick={scrollLongboards}>Longboards</SelectMenuButton>
                 <SelectMenuButton onClick={scrollProgramming}>Programming</SelectMenuButton>
                 <SelectMenuButton onClick={scrollTennis}>Table Tennis</SelectMenuButton>

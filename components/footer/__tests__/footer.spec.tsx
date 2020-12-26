@@ -5,6 +5,8 @@ import { ThemeProvider } from 'styled-components'
 import { lightTheme } from '../../themes'
 import 'jest-styled-components'
 import toJson from 'enzyme-to-json'
+import React from 'react'
+import { AdminContext } from '../../main-layout/main-layout'
 
 test ('should render', () => {
     const res = shallow(<FooterView/>)

@@ -3,7 +3,9 @@ module.exports = {
         '**/*.{ts,tsx}',
         '!**/*.d.ts',
         '!**/node_modules/**',
-        '!**/.next/**'
+        '!**/.next/**',
+        '!**/config/**',
+        '!**/interfaces/**'
     ],
     setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
