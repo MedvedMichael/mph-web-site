@@ -1,6 +1,6 @@
 # MPH's WEB SITE
 ## Welcome!
-My name is Medvediev Michael, and it is my own web-site portfolio with integrated blog
+My name is Medvediev Michael, and it is [my own website portfolio with integrated blog](https://mph-web-site.vercel.app/)
 
 # Getting Started
 
@@ -54,7 +54,7 @@ To learn more about which CSS attributes it can animate, follow the [link](https
 
 
 # Deployment
-This site was successfully deployed on the platform Vercel with all necessary attachments and configs.
+This site was successfully deployed on the platform [Vercel](https://vercel.com/) with all necessary attachments and configs.
 
 
-## Rate [my website]((https://mph-web-site.vercel.app/)) and have fun!
+Rate [my website]((https://mph-web-site.vercel.app/)) and have fun!
