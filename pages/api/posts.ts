@@ -10,6 +10,7 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
         const query = await getAllPosts()
         const posts: Array<Post> = query.docs.map(doc => {
             const res = doc.data()
+            res.timestamp = toDate(res.timestamp._seconds, res.timestamp._nanoseconds)
             return { ...res, id: doc.id, comments: [] } as Post
         })
 

@@ -21,19 +21,10 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts: serverPosts }) => {
         }
     })
 
-    // if (!posts) {
-    //     return (
-    //         <MainLayout title={'Blog'}>
-    //             <Loading />
-    //         </MainLayout>
-    //     )
-    // }
-
-    // const [posts, setPosts] = useState(props.posts)
     return (
         <>
             <MainLayout title={'Blog'}>
-                <PostsList posts={posts} />
+                <PostsList posts={posts ? posts.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()) : null} />
             </MainLayout>
         </>
     )
@@ -46,11 +37,9 @@ const getPosts = async () => {
 
 
 BlogPage.getInitialProps = async ({ req }) => {
-
     try {
         if (!req)
             throw new Error()
-
 
         return getPosts()
     }

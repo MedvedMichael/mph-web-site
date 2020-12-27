@@ -40,9 +40,14 @@ const EditorPage: NextPage = ({ post, id }: EditorPageProps) => {
     const saveChangesHandler = async () => {
         const secret = localStorage.getItem('isAdmin')
         const res = await patchPost({ id, text, title, images, secret })
-        console.log(res.body)
         if (res.ok)
             router.push('/blog')
+    }
+
+    const removeImage = (index: number) => {
+        const newImages = [...images]
+        newImages.splice(index, 1)
+        setImages(newImages)
     }
 
     const removePost = async () => {
@@ -64,10 +69,10 @@ const EditorPage: NextPage = ({ post, id }: EditorPageProps) => {
                 <Title>Editor</Title>
                 <TitleEditor placeholder="Input title" value={title} onChange={({ target }) => setTitle(target.value)}></TitleEditor>
                 <TextEditor placeholder="Input text" value={text} onChange={({ target }) => setText(target.value)}></TextEditor>
-                <Slider images={images} />
+                <Slider images={images} remove={removeImage} edit />
                 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column' }}>
                     {loading ? <Spinner /> : null}
-                    <PostPictureButton>
+                    <PostPictureButton className="std-button">
                         <input type="file" onChange={postPictureHandler} />
                         Post Picture
                 </PostPictureButton>
@@ -147,11 +152,9 @@ const TextEditor = styled.textarea`
 
 const PostPictureButton = styled.label`
     color: ${props => props.theme.text.primary};
-    cursor: pointer;
-    background: #3160d6;
     padding: .5rem;
     border-radius: .25rem;
-    margin: 1rem auto;
+    margin: .5rem auto;
 `
 
 const SaveChangesButton = styled.div`

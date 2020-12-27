@@ -10,5 +10,6 @@ export interface Post {
     title: string,
     text: string,
     images?: string[],
-    comments: Array<Comment>
+    comments: Array<Comment>,
+    timestamp: Date,
 }

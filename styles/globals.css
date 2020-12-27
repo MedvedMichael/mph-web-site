@@ -76,6 +76,12 @@ input {
   appearance: none;
   border-radius: .25rem;
   padding: .5rem;
+  transition: background 0.1s ease;
+  cursor: pointer;
+}
+
+.std-button:hover {
+  background: #4471e4;
 }
 
 input[type="file"] {

@@ -86,8 +86,7 @@ const PostViewCard = styled(animated.div)`
     flex-direction: column;
     min-width: 0;
     background: ${props => props.theme.bg.inset};
-    transition: ${props => props.theme.transition.bg};
-  /*Linear gradient... */
+    transition: ${props => props.theme.transition.primary};
     z-index:2;
     
     background-clip: border-box;

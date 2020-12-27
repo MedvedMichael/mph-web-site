@@ -38,7 +38,7 @@ export default async function postImage (req: PostImageRequest, res: NextApiResp
 
 export const config = {
     api: {
-        bodyParder: {
+        bodyParser: {
             sizeLimit: '50mb'
         }
     }
