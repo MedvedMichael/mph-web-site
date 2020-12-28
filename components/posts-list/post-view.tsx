@@ -15,14 +15,13 @@ interface PostViewProps {
 }
 
 export default function PostView ({ post, isAdmin }: PostViewProps) {
-    const { text, title, id, images, comments: com } = post
-
+    const { text, title, id, images, comments: com, timestamp } = post
+    const date = new Date(timestamp)
     const [show, setShow] = useState(false)
     const [comments, setComments] = useState(com)
 
     const cardText = show ? text : text.slice(0,100).replace('\n', ' ') + (text.length > 100 ? '...' : '')
     const addComment = (comment: Comment) => {
-        console.log(comment)
         setComments([comment, ...comments])
     }
 
@@ -62,7 +61,9 @@ export default function PostView ({ post, isAdmin }: PostViewProps) {
                 <TitleBlock>
                     <CardTitle>
                         {title}
+                        
                     </CardTitle>
+                    <DateView>{date.toLocaleDateString() + ' '+ date.toLocaleTimeString().slice(0,5)}</DateView>
                     {editPostButton}
                 </TitleBlock>
                 <CardText>
@@ -126,6 +127,7 @@ const CardTitle = styled.h3`
     text-transform: uppercase;
     margin-left: 1rem;
     margin-top: .5rem;
+    display: flex;
 `
 
 const CardText = styled.h5`
@@ -149,5 +151,9 @@ const CommentsTitle = styled.h3`
 `
 
 const EditPostButton = styled.div`
+    margin: auto 1rem;
+`
+
+const DateView = styled.h6`
     margin: auto 1rem auto auto;
 `
