@@ -25,15 +25,15 @@ const SkillsBlock = () => (
                 <TechCard path='https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png' title='JavaScript' />
                 <TechCard path='https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/026/full/react.png' title='React' />
                 <TechCard path='https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png' title='HTML5' />
-                <TechCard path='https://cdn.worldvectorlogo.com/logos/css3.svg' title='CSS3' />
+                <TechCard path='https://www.svgrepo.com/show/303263/css3-logo.svg' title='CSS3' />
                 <TechCard path='https://www.appnovation.com/sites/default/files/2019-06/techservicelogo_NodeJS.svg' title='NodeJS' />
-                <TechCard path='https://digital.ai/sites/default/files/pictures/styles/maxwidth_300/public/pt_logos/mongodb.png?itok=T7Bcj44-' title='MongoDB' />
+                <TechCard path='https://www.svgrepo.com/show/303232/mongodb-logo.svg' title='MongoDB' />
                 <TechCard path='https://cdn.auth0.com/blog/logos/nextjs-logo.png' title='Next.js' />
                 <TechCard path='https://cdn.iconscout.com/icon/free/png-512/redux-283024.png' title='Redux' />
                 <TechCard path='https://www.styled-components.com/atom.png' title='Styled components' />
                 <TechCard path='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png' title='TypeScript' />
                 <TechCard path='https://www.drupal.org/files/issues/2019-12-27/heroku_logo.png' title='Heroku Deployment' />
-                <TechCard path='https://installprogram.ru/wp-content/uploads/2018/04/TelegramLogo-1.png' title='Telegram Bot API' />
+                <TechCard path='https://www.svgrepo.com/show/447118/telegram-fill.svg' title='Telegram Bot API' />
                 <TechCard path='https://ps.w.org/custom-wp-rest-api/assets/icon-128x128.png?rev=1975404' title='REST API' />
                 <TechCard path='https://cdn.auth0.com/blog/new-bootstrap4/logo.png' title='Bootstrap' />
                 <TechCard path='https://diyhacking.com/wp-content/uploads/2017/04/Linux-Shell.png' title='Linux Terminal' />
